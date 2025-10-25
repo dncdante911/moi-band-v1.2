@@ -1,0 +1,448 @@
+/* Power Metal Visual Identity */
+
+:root {
+    --gold: #FFD700;
+    --dark-gold: #DAA520;
+    --blood-red: #8B0000;
+    --royal-blue: #4169E1;
+    --epic-purple: #6A0DAD;
+    --dark-bg: #0a0a0f;
+    --card-bg: rgba(15, 15, 25, 0.9);
+}
+
+/* === БАННЕР === */
+.hero-banner {
+    height: 80vh;
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1a2e 50%, var(--dark-bg) 100%),
+                url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80') center/cover;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255,215,0, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(65,105,225, 0.1) 0%, transparent 50%);
+    animation: light-shift 15s ease-in-out infinite;
+}
+
+@keyframes light-shift {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 5rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 900;
+    margin: 0;
+    animation: golden-glow 3s ease-in-out infinite;
+    text-shadow: 
+        0 0 20px rgba(255,215,0, 0.8),
+        0 0 40px rgba(65,105,225, 0.5);
+}
+
+@keyframes golden-glow {
+    0%, 100% { 
+        text-shadow: 0 0 20px rgba(255,215,0, 0.8), 0 0 40px rgba(255,215,0, 0.4);
+    }
+    50% { 
+        text-shadow: 0 0 40px rgba(255,215,0, 1), 0 0 80px rgba(255,215,0, 0.6);
+    }
+}
+
+.hero-content p {
+    font-size: 1.8rem;
+    color: var(--dark-gold);
+    margin-top: 20px;
+    letter-spacing: 2px;
+}
+
+.hero-button {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 18px 50px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%);
+    color: #000;
+    border: 3px solid var(--gold);
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+    border-radius: 0;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 
+        0 0 20px rgba(255,215,0, 0.6),
+        inset 0 0 20px rgba(0,0,0,0.3);
+}
+
+.hero-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, transparent 70%);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.hero-button:hover {
+    background: linear-gradient(135deg, #FFE135 0%, var(--gold) 100%);
+    box-shadow: 
+        0 0 40px rgba(255,215,0, 1),
+        inset 0 0 20px rgba(255,255,255,0.2),
+        0 20px 40px rgba(0,0,0,0.5);
+    transform: translateY(-5px) scale(1.05);
+}
+
+/* === АЛЬБОМЫ === */
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.album-card {
+    position: relative;
+    aspect-ratio: 1;
+    border: 3px solid var(--gold);
+    border-radius: 0;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 
+        0 0 30px rgba(255,215,0, 0.3),
+        inset 0 0 30px rgba(0,0,0,0.5);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.album-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+        linear-gradient(45deg, transparent 30%, rgba(255,215,0,0.1) 50%, transparent 70%),
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2) 0%, transparent 50%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.album-card:hover {
+    transform: scale(1.08);
+    box-shadow: 
+        0 0 60px rgba(255,215,0, 0.8),
+        0 20px 40px rgba(0,0,0,0.7),
+        inset 0 0 30px rgba(255,255,255,0.1);
+}
+
+.album-card:hover::before {
+    opacity: 1;
+}
+
+.album-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.album-card:hover img {
+    transform: scale(1.05);
+}
+
+.album-title-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, 
+        rgba(0,0,0,1) 0%, 
+        rgba(0,0,0,0.8) 50%, 
+        transparent 100%);
+    padding: 40px 20px 20px;
+    z-index: 2;
+}
+
+.album-title-overlay h3 {
+    margin: 0;
+    color: var(--gold);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255,215,0, 0.8);
+}
+
+/* === ЧАТ === */
+.chat-container {
+    display: flex;
+    gap: 20px;
+    height: calc(100vh - 200px);
+    margin-top: 20px;
+}
+
+.chat-wrapper {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+}
+
+.chat-sidebar {
+    width: 200px;
+    background: var(--card-bg);
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.chat-sidebar h3 {
+    color: var(--gold);
+    font-size: 1rem;
+    margin-top: 0;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 10px;
+}
+
+.rooms-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.room-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    color: #ccc;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.room-link:hover {
+    background: rgba(255,215,0, 0.1);
+    color: var(--gold);
+}
+
+.room-link.active {
+    background: rgba(255,215,0, 0.2);
+    color: var(--gold);
+    border-left: 3px solid var(--gold);
+}
+
+.room-icon {
+    font-size: 1.2rem;
+}
+
+.chat-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--card-bg);
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.chat-header {
+    padding: 20px;
+    border-bottom: 2px solid var(--gold);
+    background: rgba(255,215,0, 0.05);
+}
+
+.chat-header h2 {
+    margin: 0;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.room-description {
+    margin: 5px 0 0;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message {
+    display: flex;
+    gap: 12px;
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.avatar-placeholder {
+    color: #000;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.message-content {
+    flex: 1;
+}
+
+.message-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.username {
+    color: var(--gold);
+    font-weight: bold;
+}
+
+.timestamp {
+    color: #888;
+    font-size: 0.8rem;
+}
+
+.message-text {
+    margin: 0;
+    color: #ddd;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.chat-input-area {
+    padding: 15px;
+    border-top: 1px solid var(--gold);
+    background: rgba(255,215,0, 0.02);
+}
+
+.message-form {
+    display: flex;
+    gap: 10px;
+}
+
+.message-input {
+    flex: 1;
+    background: rgba(255,255,255, 0.05);
+    border: 1px solid var(--gold);
+    color: #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.message-input:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(255,215,0, 0.5);
+}
+
+.send-button {
+    padding: 10px 20px;
+    background: var(--gold);
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.send-button:hover {
+    background: var(--dark-gold);
+    box-shadow: 0 0 15px rgba(255,215,0, 0.6);
+}
+
+.chat-users {
+    width: 150px;
+    background: var(--card-bg);
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.chat-users h3 {
+    color: var(--gold);
+    font-size: 0.9rem;
+    margin-top: 0;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 10px;
+}
+
+.users-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.user-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 4px;
+    background: rgba(255,215,0, 0.05);
+}
+
+.user-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #888;
+}
+
+.user-status.online {
+    background: #4ade80;
+}
+
+.user-status.away {
+    background: #fbbf24;
+}
+
+.user-name {
+    font-size: 0.85rem;
+    color: #ccc;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

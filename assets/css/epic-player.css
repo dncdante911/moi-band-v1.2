@@ -1,0 +1,674 @@
+/**
+ * MASTER OF ILLUSION - EPIC PLAYER
+ * Металл-стиль плеер для треков и видео
+ */
+
+:root {
+    --gold: #FFD700;
+    --gold-light: #FFE135;
+    --gold-dark: #DAA520;
+    --dark-bg: #0a0a0f;
+    --card-bg: rgba(15, 15, 25, 0.95);
+}
+
+/* ============================================
+   КОНТЕЙНЕР ПЛЕЕРА
+   ============================================ */
+
+.epic-player {
+    background: linear-gradient(135deg, rgba(10,10,15,0.95) 0%, rgba(20,20,40,0.95) 100%);
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 900px;
+    margin: 40px auto;
+    box-shadow: 
+        0 0 50px rgba(255,215,0,0.3),
+        inset 0 0 30px rgba(0,0,0,0.5);
+    font-family: 'Roboto', sans-serif;
+    color: #e0e0e0;
+}
+
+/* ============================================
+   ЭКРАН ПЛЕЕРА (ВИДЕО / ОБЛОЖКА)
+   ============================================ */
+
+.player-display {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    box-shadow: 
+        0 0 30px rgba(255,215,0,0.3),
+        inset 0 0 20px rgba(0,0,0,0.8);
+}
+
+.player-display video {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 400px;
+    object-fit: contain;
+    background: #000;
+    border-radius: 8px;
+    display: block;
+}
+
+.player-display audio {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.player-cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-cover img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.player-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s;
+    background: rgba(0,0,0,0.5);
+}
+
+.player-display:hover .player-overlay {
+    opacity: 1;
+}
+
+.play-big {
+    font-size: 4rem;
+    color: var(--gold);
+    text-shadow: 0 0 20px var(--gold);
+    animation: pulse-play 2s ease-in-out infinite;
+}
+
+@keyframes pulse-play {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* ============================================
+   ИНФОРМАЦИЯ О ТРЕКЕ
+   ============================================ */
+
+.player-info {
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(255,215,0,0.2);
+}
+
+.track-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin: 0 0 10px;
+    text-shadow: 0 0 10px rgba(255,215,0,0.5);
+}
+
+.track-artist {
+    font-size: 1rem;
+    color: #aaa;
+    margin: 0;
+}
+
+.track-album {
+    font-size: 0.9rem;
+    color: #888;
+    margin: 5px 0 0;
+}
+
+/* ============================================
+   ПРОГРЕСС БАР
+   ============================================ */
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.time {
+    font-size: 0.85rem;
+    color: #aaa;
+    min-width: 45px;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,215,0,0.1);
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid var(--gold);
+    overflow: hidden;
+}
+
+.progress-bar:hover {
+    height: 8px;
+    border-color: var(--gold-light);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 10px var(--gold);
+}
+
+.progress-handle {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--gold);
+    cursor: grab;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.progress-bar:hover .progress-handle {
+    opacity: 1;
+}
+
+/* ============================================
+   КНОПКИ УПРАВЛЕНИЯ
+   ============================================ */
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--gold);
+    background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, transparent 100%);
+    color: var(--gold);
+    font-size: 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.control-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,215,0,0.2);
+    transition: left 0.3s;
+}
+
+.control-btn:hover {
+    border-color: var(--gold-light);
+    background: linear-gradient(135deg, rgba(255,215,0,0.2) 0%, rgba(255,215,0,0.1) 100%);
+    box-shadow: 0 0 20px rgba(255,215,0,0.5);
+    transform: scale(1.1);
+}
+
+.control-btn:hover::before {
+    left: 100%;
+}
+
+.control-btn.play-btn {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+    border-width: 3px;
+}
+
+.control-btn.play-btn:hover {
+    box-shadow: 0 0 40px rgba(255,215,0,0.8);
+}
+
+.control-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* ============================================
+   КНОПКИ РЕЖИМОВ
+   ============================================ */
+
+.player-modes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(255,215,0,0.2);
+    flex-wrap: wrap;
+}
+
+.mode-btn {
+    padding: 10px 20px;
+    border: 2px solid var(--gold);
+    background: transparent;
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.mode-btn:hover,
+.mode-btn.active {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: #000;
+    box-shadow: 0 0 20px rgba(255,215,0,0.6);
+}
+
+/* ============================================
+   СПИСОК ТРЕКОВ (ОЧЕРЕДЬ)
+   ============================================ */
+
+.queue-container {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 0;
+    margin-bottom: 20px;
+    background: rgba(0,0,0,0.3);
+}
+
+.queue-title {
+    font-weight: bold;
+    color: var(--gold);
+    padding: 15px;
+    border-bottom: 1px solid var(--gold);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+}
+
+.queue-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.queue-item {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255,215,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.queue-item:hover {
+    background: rgba(255,215,0,0.1);
+}
+
+.queue-item.active {
+    background: rgba(255,215,0,0.2);
+    color: var(--gold);
+}
+
+.queue-number {
+    min-width: 30px;
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+.queue-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.queue-track-name {
+    font-size: 0.95rem;
+    color: #ddd;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.queue-track-album {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.queue-duration {
+    color: #aaa;
+    font-size: 0.85rem;
+    min-width: 45px;
+    text-align: right;
+}
+
+/* ============================================
+   ТЕКСТ ПЕСНИ (LYRICS)
+   ============================================ */
+
+.lyrics-container {
+    background: rgba(0,0,0,0.5);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 20px;
+    max-height: 500px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.lyrics-container.active {
+    display: block;
+}
+
+.lyrics-text {
+    color: #ddd;
+    line-height: 2;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+}
+
+.no-lyrics {
+    text-align: center;
+    color: #888;
+    padding: 40px 20px;
+}
+
+/* ============================================
+   СКРОЛБАР
+   ============================================ */
+
+.queue-container::-webkit-scrollbar,
+.lyrics-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.queue-container::-webkit-scrollbar-track,
+.lyrics-container::-webkit-scrollbar-track {
+    background: rgba(255,215,0,0.05);
+}
+
+.queue-container::-webkit-scrollbar-thumb,
+.lyrics-container::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 4px;
+}
+
+.queue-container::-webkit-scrollbar-thumb:hover,
+.lyrics-container::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-light);
+}
+
+/* ============================================
+   АДАПТИВНОСТЬ
+   ============================================ */
+
+@media (max-width: 768px) {
+    .epic-player {
+        padding: 20px;
+    }
+    
+    .player-controls {
+        gap: 15px;
+    }
+    
+    .control-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+    
+    .control-btn.play-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .track-title {
+        font-size: 1.3rem;
+    }
+    
+    .player-modes {
+        gap: 10px;
+    }
+    
+    .mode-btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .epic-player {
+        padding: 15px;
+        border-radius: 8px;
+    }
+    
+    .player-controls {
+        gap: 10px;
+    }
+    
+    .control-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .control-btn.play-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 1.3rem;
+    }
+    
+    .track-title {
+        font-size: 1.1rem;
+    }
+    
+    .queue-container {
+        max-height: 250px;
+    }
+    
+    .lyrics-container {
+        max-height: 300px;
+        font-size: 0.85rem;
+    }
+}
+
+/* === ВИДЕО ПЛЕЕР === */
+#video-player {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+    background: #000;
+    border-radius: 8px;
+}
+
+/* === ОБЛОЖКА === */
+.player-cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.player-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* === ДИСПЛЕЙ === */
+.player-display {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 0 30px rgba(255,215,0,0.3);
+}
+
+/* === РЕЖИМЫ === */
+.player-modes {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mode-btn {
+    padding: 8px 16px;
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+}
+
+.mode-btn:hover {
+    background: rgba(255,215,0,0.1);
+    box-shadow: 0 0 15px rgba(255,215,0,0.5);
+}
+
+.mode-btn.active {
+    background: linear-gradient(135deg, var(--gold) 0%, #DAA520 100%);
+    color: #000;
+    box-shadow: 0 0 20px rgba(255,215,0,0.8);
+}
+
+/* === ОЧЕРЕДЬ И ТЕКСТ === */
+.queue-container,
+.lyrics-container {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+    margin-top: 20px;
+}
+
+.queue-title {
+    color: var(--gold);
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.queue-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.queue-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255,215,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #ddd;
+}
+
+.queue-item:hover {
+    background: rgba(255,215,0,0.1);
+    color: var(--gold);
+}
+
+.queue-item.active {
+    background: rgba(255,215,0,0.2);
+    color: var(--gold);
+    font-weight: bold;
+}
+
+.queue-number {
+    color: var(--gold);
+    font-weight: bold;
+    min-width: 25px;
+}
+
+.queue-info {
+    flex: 1;
+}
+
+.queue-track-name {
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.queue-track-album {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.queue-duration {
+    color: #999;
+    font-size: 0.85rem;
+}
+
+.lyrics-text {
+    color: #ddd;
+    line-height: 2;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+.no-lyrics {
+    text-align: center;
+    color: #888;
+    padding: 40px 20px;
+}

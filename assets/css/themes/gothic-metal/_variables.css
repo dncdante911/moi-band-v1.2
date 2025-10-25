@@ -1,0 +1,57 @@
+/**
+ * GOTHIC METAL THEME - _variables.css
+ * Мрачный, готический дизайн с фиолетовыми акцентами
+ */
+
+:root {
+    /* ============ ЦВЕТА ============ */
+    --primary-color: #9D00FF;        /* Фиолетовый - основной */
+    --secondary-color: #6A0DAD;      /* Темный фиолет - дополнительный */
+    --accent-color: #D946EF;         /* Ярко-фиолетовый - акценты */
+    
+    --dark-bg: #0f0515;              /* Очень темный фон */
+    --dark-panel: #1a0f2e;           /* Темная готическая панель */
+    --light-text: #d0d0e0;           /* Холодный светлый текст */
+    --border-color: #9D00FF;         /* Фиолетовая граница */
+    
+    /* ============ ШРИФТЫ ============ */
+    --heading-font: 'Cinzel Decorative', serif;
+    --body-font: 'Roboto', sans-serif;
+    
+    --heading-size-lg: 2.5rem;
+    --heading-size-md: 2rem;
+    --heading-size-sm: 1.5rem;
+    --body-size: 16px;
+    
+    /* ============ РАЗМЕРЫ ============ */
+    --max-width: 1200px;
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    
+    /* ============ ТЕНИ И ЭФФЕКТЫ ============ */
+    --shadow-color: 0 0 20px rgba(157, 0, 255, 0.3);
+    --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.8);
+    --glow-purple: 0 0 15px rgba(157, 0, 255, 0.6);
+    --glow-strong: 0 0 25px rgba(217, 70, 239, 0.8);
+    
+    /* ============ АНИМАЦИИ ============ */
+    --transition: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    --transition-fast: 0.15s ease;
+    
+    /* ============ РАССТОЯНИЯ ============ */
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+    --spacing-xl: 50px;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --heading-size-lg: 2rem;
+        --heading-size-md: 1.5rem;
+        --heading-size-sm: 1.2rem;
+        --body-size: 14px;
+    }
+}

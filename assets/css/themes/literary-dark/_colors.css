@@ -1,0 +1,113 @@
+/**
+ * LITERARY DARK - _colors.css
+ * Литературная цветовая схема - теплые, мягкие тона
+ */
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color);
+    text-shadow: 0 0 8px rgba(212, 165, 116, 0.3);
+}
+
+h1 { text-shadow: var(--glow-strong); }
+h2 {
+    color: var(--primary-color);
+    border-bottom-color: var(--accent-color);
+    text-shadow: 0 0 12px rgba(212, 165, 116, 0.4);
+}
+
+a {
+    color: var(--secondary-color);
+    transition: all var(--transition);
+}
+
+a:hover {
+    color: var(--primary-color);
+    text-shadow: var(--glow-warm);
+}
+
+.page-content {
+    background-color: rgba(37, 31, 25, 0.9);
+    border: 2px solid var(--border-color);
+    box-shadow: var(--shadow-color);
+    background-image: 
+        repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(212, 165, 116, 0.02) 1px, rgba(212, 165, 116, 0.02) 2px),
+        repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(139, 115, 85, 0.02) 1px, rgba(139, 115, 85, 0.02) 2px);
+}
+
+.page-content h2 {
+    border-bottom-color: var(--accent-color);
+}
+
+button, .btn, input[type="button"], input[type="submit"] {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #1a1714;
+    border: 2px solid var(--primary-color);
+    font-weight: bold;
+    transition: all var(--transition);
+    box-shadow: 0 0 8px rgba(212, 165, 116, 0.3);
+}
+
+button:hover, .btn:hover, input[type="button"]:hover, input[type="submit"]:hover {
+    box-shadow: var(--glow-strong);
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+}
+
+button:active, .btn:active {
+    transform: translateY(0);
+}
+
+input[type="text"], input[type="email"], input[type="password"], textarea, select {
+    background-color: rgba(20, 17, 13, 0.8);
+    border: 1px solid var(--secondary-color);
+    color: var(--light-text);
+    transition: all var(--transition);
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(212, 165, 116, 0.2);
+    outline: none;
+}
+
+.card, .album-card, .genre-card, .influence-card {
+    background-color: rgba(37, 31, 25, 0.85);
+    border: 2px solid var(--secondary-color);
+    transition: all var(--transition-slow);
+}
+
+.card:hover, .album-card:hover, .genre-card:hover, .influence-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px rgba(212, 165, 116, 0.3);
+    transform: translateY(-5px);
+}
+
+::selection {
+    background-color: var(--primary-color);
+    color: #1a1714;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary-color);
+}
+
+code, pre {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-left: 3px solid var(--accent-color);
+    color: #b8d0a8;
+}
+
+blockquote {
+    border-left: 4px solid var(--primary-color);
+    background-color: rgba(212, 165, 116, 0.05);
+    color: var(--light-text);
+}

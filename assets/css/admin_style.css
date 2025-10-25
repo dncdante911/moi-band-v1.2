@@ -1,0 +1,46 @@
+/* Файл: assets/css/admin_style.css - БРУТАЛЬНАЯ ВЕРСИЯ */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+body {
+    font-family: 'Roboto Condensed', sans-serif; /* Новый четкий шрифт */
+    background-color: #1a1a1a;
+    background-image: url('https://www.transparenttextures.com/patterns/brushed-metal.png'); /* Текстура металла */
+    color: #e0e0e0;
+    margin: 0;
+}
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(10, 10, 10, 0.8);
+    border: 1px solid #444;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+h1 {
+    font-size: 2.2rem;
+    border-bottom: 2px solid #9B1C1C; /* Кроваво-красный акцент */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+.admin-nav { margin-bottom: 20px; font-size: 1.1rem; padding: 10px; background-color: #111; border-radius: 4px; border: 1px solid #333; }
+.admin-nav a { color: #ccc; text-decoration: none; font-weight: bold; padding: 8px 12px; border-radius: 4px; transition: all 0.2s; }
+.admin-nav a.active { color: #fff; background-color: #9B1C1C; }
+.admin-nav a:not(.active):hover { background-color: #333; color: #fff; }
+.admin-nav-separator { margin: 0 10px; color: #444; }
+.add-button { display: inline-block; padding: 10px 20px; background-color: #333; border: 1px solid #555; color: #fff; text-decoration: none; border-radius: 4px; font-weight: bold; margin-bottom: 20px; transition: all 0.3s; }
+.add-button:hover { background-color: #9B1C1C; border-color: #ff3333; }
+.track-table { width: 100%; border-collapse: collapse; }
+.track-table th, .track-table td { padding: 12px 15px; border: 1px solid #333; text-align: left; vertical-align: middle; }
+.track-table th { background-color: #111; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; }
+.track-table tr:nth-child(even) { background-color: rgba(255,255,255,0.02); }
+.track-table img { border-radius: 2px; border: 1px solid #444; }
+.action-links a { color: #ccc; text-decoration: none; margin-right: 15px; font-weight: bold; }
+.action-links a:hover { color: #fff; text-decoration: underline; }
+.action-links .delete { color: #e53e3e; }
+.action-links .delete:hover { color: #ff6666; }
+/* Стили для форм */
+.form-container { max-width: 800px; } .form-group { margin-bottom: 20px; } .form-group label { display: block; margin-bottom: 5px; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; } .form-group input, .form-group textarea { width: 100%; padding: 10px; background-color: #111; border: 1px solid #444; color: #e0e0e0; border-radius: 2px; box-sizing: border-box; } .form-group input:focus, .form-group textarea:focus { border-color: #9B1C1C; outline: none; box-shadow: 0 0 5px rgba(155, 28, 28, 0.5); }
+.submit-button { padding: 12px 25px; background-color: #9B1C1C; color: #fff; border: 1px solid #ff3333; border-radius: 4px; font-size: 1rem; cursor: pointer; text-transform: uppercase; transition: all 0.3s; }
+.submit-button:hover { background-color: #B92F2F; box-shadow: 0 0 10px rgba(255, 51, 51, 0.5); }
+.action-links .add { color: #38A169; }

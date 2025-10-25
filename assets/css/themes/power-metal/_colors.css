@@ -1,0 +1,147 @@
+/**
+ * ФАЙЛ: assets/css/themes/power-metal/_colors.css
+ * ЦВЕТОВАЯ СХЕМА POWER METAL
+ * 
+ * Содержит все цветовые стили для компонентов
+ * Герметичный золотой стиль с яркими акцентами
+ */
+
+/* ============ ТЕЛ СТРАНИЦЫ ============ */
+body {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+}
+
+/* ============ ЗАГОЛОВКИ ============ */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+h1 { text-shadow: var(--glow-strong); }
+h2 { 
+    color: var(--primary-color);
+    border-bottom-color: var(--accent-color);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+/* ============ ССЫЛКИ ============ */
+a {
+    color: var(--secondary-color);
+    transition: all var(--transition);
+}
+
+a:hover {
+    color: var(--primary-color);
+    text-shadow: var(--glow-golden);
+}
+
+/* ============ ПАНЕЛИ И КОНТЕЙНЕРЫ ============ */
+.page-content {
+    background-color: rgba(26, 20, 16, 0.9);
+    border: 2px solid var(--border-color);
+    box-shadow: var(--shadow-color);
+}
+
+.page-content h2 {
+    border-bottom-color: var(--accent-color);
+}
+
+/* ============ КНОПКИ ============ */
+button, 
+.btn,
+input[type="button"],
+input[type="submit"] {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #000;
+    border: 2px solid var(--primary-color);
+    font-weight: bold;
+    transition: all var(--transition);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+button:hover,
+.btn:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+    box-shadow: var(--glow-strong);
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+}
+
+button:active,
+.btn:active {
+    transform: translateY(0);
+}
+
+/* ============ ИНПУТЫ И ФОРМ ============ */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    background-color: rgba(20, 20, 20, 0.8);
+    border: 1px solid var(--secondary-color);
+    color: var(--light-text);
+    transition: all var(--transition);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    outline: none;
+}
+
+/* ============ КАРТОЧКИ ============ */
+.card,
+.album-card,
+.genre-card,
+.influence-card {
+    background-color: rgba(26, 20, 16, 0.85);
+    border: 2px solid var(--secondary-color);
+    transition: all var(--transition-slow);
+}
+
+.card:hover,
+.album-card:hover,
+.genre-card:hover,
+.influence-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    transform: translateY(-5px);
+}
+
+/* ============ ВЫДЕЛЕНИЕ ТЕКСТА ============ */
+::selection {
+    background-color: var(--primary-color);
+    color: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary-color);
+}
+
+/* ============ БЛОК КОДА ============ */
+code, pre {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-left: 3px solid var(--accent-color);
+    color: #90EE90;
+}
+
+/* ============ ЦИТАТЫ ============ */
+blockquote {
+    border-left: 4px solid var(--primary-color);
+    background-color: rgba(255, 215, 0, 0.05);
+    color: var(--light-text);
+}
+
+/* ============ ПЛЕЕР (НЕ ТРОГАЕМ!) ============ */
+/* Плеер уже имеет свои стили в epic-player.css - оставляем без изменений */

@@ -1,0 +1,168 @@
+/**
+ * LITERARY DARK - _typography.css
+ * Классическая, литературная типография
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Roboto:wght@400;700;900&display=swap');
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--body-size);
+    line-height: 1.8;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: var(--spacing-md);
+    letter-spacing: 0.5px;
+}
+
+h1 {
+    font-size: var(--heading-size-lg);
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-lg);
+}
+
+h2 {
+    font-size: var(--heading-size-md);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--accent-color);
+    display: inline-block;
+}
+
+h3 {
+    font-size: var(--heading-size-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+p {
+    margin-bottom: var(--spacing-md);
+    line-height: 1.8;
+    font-size: var(--body-size);
+}
+
+p strong {
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+p em {
+    font-style: italic;
+    color: var(--accent-color);
+}
+
+ul, ol {
+    margin-left: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+li {
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.8;
+}
+
+@media (min-width: 1200px) {
+    body { font-size: 16px; }
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.5rem; }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    body { font-size: 15px; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.2rem; }
+}
+
+@media (max-width: 767px) {
+    body { font-size: 14px; }
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.3rem; }
+    h3 { font-size: 1.1rem; }
+    
+    p { line-height: 1.7; }
+    ul, ol { margin-left: var(--spacing-md); }
+}
+
+strong, .bold {
+    font-weight: 700;
+}
+
+em, .italic {
+    font-style: italic;
+}
+
+small {
+    font-size: 0.85em;
+    opacity: 0.85;
+}
+
+mark {
+    background-color: rgba(212, 165, 116, 0.15);
+    padding: 2px 4px;
+    border-radius: 3px;
+    color: var(--primary-color);
+}
+
+code {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+pre {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    overflow-x: auto;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-md);
+}
+
+a {
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: all var(--transition);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width var(--transition);
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+
+.text-muted {
+    opacity: 0.75;
+    color: #888;
+}
+
+.text-highlight {
+    color: var(--primary-color);
+    font-weight: 700;
+    text-shadow: var(--glow-warm);
+}

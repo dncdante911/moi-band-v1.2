@@ -1,0 +1,12 @@
+/**
+ * Файл: assets/css/themes/power-metal/main.css
+ * POWER METAL THEME - Эпический, героический дизайн
+ * 
+ * Импортируем все компоненты темы
+ */
+
+@import '_variables.css';
+@import '_colors.css';
+@import '_typography.css';
+@import '_components.css';
+@import '_animations.css';

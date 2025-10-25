@@ -1,0 +1,948 @@
+/**
+ * Файл: assets/css/about.css
+ * Полные стили для страницы "О проекте"
+ */
+
+:root {
+    --gold: #FFD700;
+    --dark-gold: #DAA520;
+    --blood-red: #8B0000;
+    --royal-blue: #4169E1;
+    --purple: #6A0DAD;
+    --dark-bg: #0a0a0f;
+    --card-bg: rgba(15, 15, 25, 0.9);
+}
+
+/* === БАННЕР === */
+.about-banner {
+    position: relative;
+    height: 60vh;
+    background: linear-gradient(135deg, #000 0%, #1a1a2e 50%, #000 100%),
+                url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1400&q=80') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    margin-bottom: 60px;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.7) 100%);
+    z-index: 1;
+}
+
+.banner-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    animation: pulse-glow 8s ease-in-out infinite;
+}
+
+.banner-glow-1 {
+    width: 600px;
+    height: 600px;
+    background: rgba(255, 215, 0, 0.1);
+    top: -150px;
+    left: -150px;
+}
+
+.banner-glow-2 {
+    width: 500px;
+    height: 500px;
+    background: rgba(106, 13, 173, 0.08);
+    bottom: -100px;
+    right: -100px;
+    animation-delay: 2s;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+    animation: slideDown 0.8s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.banner-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    margin: 0 0 15px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 
+        0 0 30px rgba(255,215,0,0.8),
+        0 0 60px rgba(255,215,0,0.4);
+}
+
+.banner-subtitle {
+    font-size: 1.4rem;
+    color: #ccc;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+/* === ОСНОВНОЙ КОНТЕНТ === */
+.about-page {
+    background: linear-gradient(to bottom, 
+        rgba(15,15,25,0.9) 0%,
+        rgba(20,20,35,0.9) 50%,
+        rgba(15,15,25,0.9) 100%);
+}
+
+/* === ЗАГОЛОВКИ СЕКЦИЙ === */
+.section-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin: 0 0 40px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* === ВСТУПЛЕНИЕ === */
+.intro-section {
+    margin-bottom: 80px;
+}
+
+.intro-content {
+    background: linear-gradient(135deg, 
+        rgba(255,215,0,0.05) 0%, 
+        rgba(106,13,173,0.05) 100%);
+    border: 2px solid rgba(255,215,0,0.2);
+    border-radius: 8px;
+    padding: 40px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(10px);
+}
+
+.intro-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #ddd;
+    margin: 0 0 20px;
+}
+
+.intro-text strong {
+    color: var(--gold);
+    text-shadow: 0 0 10px rgba(255,215,0,0.5);
+}
+
+.intro-text:last-child {
+    margin-bottom: 0;
+}
+
+/* === СТАТИСТИКА === */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(25,25,40,0.9) 100%);
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s;
+    box-shadow: 0 0 20px rgba(255,215,0,0.1);
+}
+
+.stat-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 40px rgba(255,215,0,0.3);
+    border-color: #FFE135;
+}
+
+.stat-number {
+    font-size: 3rem;
+    color: var(--gold);
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255,215,0,0.5);
+}
+
+.stat-label {
+    color: #aaa;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* === АЛЬБОМЫ === */
+.albums-showcase {
+    margin: 80px 0;
+}
+
+.album-showcase {
+    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(25,25,40,0.9) 100%);
+    border: 2px solid rgba(255,215,0,0.2);
+    border-radius: 8px;
+    padding: 50px;
+    margin-bottom: 40px;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+
+.album-showcase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1), transparent);
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.album-showcase:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 40px rgba(255,215,0,0.3);
+    transform: translateX(10px);
+}
+
+.album-showcase:hover::before {
+    left: 100%;
+}
+
+.album-showcase-inner {
+    position: relative;
+    z-index: 2;
+}
+
+.album-showcase-text {
+    margin-bottom: 0;
+}
+
+.album-showcase-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.album-showcase-subtitle {
+    color: #DAA520;
+    font-size: 0.95rem;
+    margin: 0 0 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.album-showcase-description {
+    color: #ddd;
+    line-height: 1.8;
+    margin: 0 0 15px;
+    font-size: 1rem;
+}
+
+.album-showcase-description strong {
+    color: var(--gold);
+}
+
+/* === ТЕГИ === */
+.album-showcase-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.tag {
+    display: inline-block;
+    background: rgba(255,215,0,0.1);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+}
+
+.tag:hover {
+    background: rgba(255,215,0,0.2);
+    box-shadow: 0 0 10px rgba(255,215,0,0.3);
+}
+
+/* === ГРИМУАРЫ === */
+.grimoire-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.grimoire-item {
+    background: rgba(0,0,0,0.3);
+    border-left: 4px solid var(--gold);
+    border-radius: 4px;
+    padding: 20px;
+    transition: all 0.3s;
+}
+
+.grimoire-item:hover {
+    background: rgba(0,0,0,0.5);
+    box-shadow: 0 0 15px rgba(255,215,0,0.2);
+    transform: translateX(5px);
+}
+
+.grimoire-item h4 {
+    color: var(--gold);
+    margin: 0 0 10px;
+    font-size: 1.1rem;
+}
+
+.grimoire-item p {
+    color: #ccc;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* === ЖАНРЫ === */
+.genres-section {
+    margin: 80px 0;
+    background: linear-gradient(135deg, rgba(255,215,0,0.05) 0%, rgba(106,13,173,0.05) 100%);
+    border: 2px solid rgba(255,215,0,0.1);
+    border-radius: 12px;
+    padding: 60px 40px;
+}
+
+.genres-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.genre-card {
+    background: linear-gradient(135deg, rgba(15,15,25,0.8) 0%, rgba(25,25,40,0.8) 100%);
+    border: 2px solid rgba(255,215,0,0.3);
+    border-radius: 8px;
+    padding: 35px;
+    text-align: center;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+
+.genre-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+    transition: all 0.6s;
+    z-index: 0;
+}
+
+.genre-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 40px rgba(255,215,0,0.3);
+    transform: translateY(-15px) scale(1.05);
+}
+
+.genre-card:hover::before {
+    top: 0;
+    left: 0;
+}
+
+.genre-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.genre-card h3 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    margin: 0 0 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.genre-card p {
+    color: #ccc;
+    line-height: 1.6;
+    margin: 0 0 20px;
+    font-size: 0.95rem;
+    position: relative;
+    z-index: 1;
+}
+
+.genre-examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.genre-examples span {
+    background: rgba(255,215,0,0.15);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+}
+
+.genre-examples span:hover {
+    background: rgba(255,215,0,0.3);
+    transform: scale(1.1);
+}
+
+/* Специальные цвета для жанров */
+.power-metal-genre {
+    border-color: rgba(255,215,0,0.5);
+}
+
+.power-metal-genre:hover {
+    box-shadow: 0 0 40px rgba(255,215,0,0.5);
+}
+
+.gothic-metal-genre {
+    border-color: rgba(139,0,0,0.5);
+}
+
+.gothic-metal-genre:hover {
+    box-shadow: 0 0 40px rgba(139,0,0,0.3);
+    border-color: #8B0000;
+}
+
+.gothic-metal-genre h3 {
+    color: #d084d0;
+}
+
+.punk-rock-genre {
+    border-color: rgba(255,100,100,0.5);
+}
+
+.punk-rock-genre:hover {
+    box-shadow: 0 0 40px rgba(255,100,100,0.3);
+    border-color: #ff6464;
+}
+
+.punk-rock-genre h3 {
+    color: #ff6464;
+}
+
+/* === ВЛИЯНИЯ === */
+.inspiration-section {
+    margin: 80px 0;
+}
+
+.influences-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.influence-card {
+    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(25,25,40,0.9) 100%);
+    border: 2px solid rgba(255,215,0,0.2);
+    border-radius: 8px;
+    padding: 30px;
+    transition: all 0.3s;
+}
+
+.influence-card h3 {
+    color: var(--gold);
+    font-size: 1.3rem;
+    margin: 0 0 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.influence-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.influence-card li {
+    color: #ddd;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,215,0,0.1);
+    transition: all 0.3s;
+}
+
+.influence-card li:last-child {
+    border-bottom: none;
+}
+
+.influence-card:hover li {
+    color: var(--gold);
+}
+
+.influence-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 30px rgba(255,215,0,0.2);
+    transform: translateY(-5px);
+}
+
+/* === ФИЛОСОФИЯ === */
+.philosophy-section {
+    margin: 80px 0;
+    background: linear-gradient(135deg, rgba(106,13,173,0.1) 0%, rgba(255,215,0,0.05) 100%);
+    border: 2px solid rgba(255,215,0,0.1);
+    border-radius: 12px;
+    padding: 60px 40px;
+}
+
+.philosophy-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.philosophy-card {
+    background: rgba(15,15,25,0.8);
+    border: 2px solid rgba(255,215,0,0.2);
+    border-radius: 8px;
+    padding: 35px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+}
+
+.philosophy-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: 8px;
+}
+
+.philosophy-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 40px rgba(255,215,0,0.3);
+    transform: translateY(-15px) rotateY(5deg);
+}
+
+.philosophy-card:hover::before {
+    opacity: 1;
+}
+
+.philosophy-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+    animation: float-icon 3s ease-in-out infinite;
+}
+
+@keyframes float-icon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.philosophy-card h3 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin: 0 0 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.philosophy-card p {
+    color: #ccc;
+    line-height: 1.7;
+    margin: 0;
+    font-size: 0.95rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* === CTA === */
+.about-cta {
+    background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(106,13,173,0.1) 100%);
+    border: 3px solid var(--gold);
+    border-radius: 12px;
+    padding: 60px 40px;
+    text-align: center;
+    margin: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(255,215,0,0.05) 0%, transparent 70%);
+    z-index: 0;
+}
+
+.about-cta h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    margin: 0 0 15px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+}
+
+.about-cta p {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin: 0 0 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 16px 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+.cta-button.primary {
+    background: var(--gold);
+    color: #000;
+    border: 2px solid var(--gold);
+}
+
+.cta-button.primary:hover {
+    box-shadow: 0 0 30px rgba(255,215,0,0.6);
+    transform: translateY(-3px);
+}
+
+.cta-button.secondary {
+    background: transparent;
+    color: var(--gold);
+    border: 2px solid var(--gold);
+}
+
+.cta-button.secondary:hover {
+    background: rgba(255,215,0,0.1);
+    box-shadow: 0 0 20px rgba(255,215,0,0.4);
+}
+
+/* === АДАПТИВНОСТЬ === */
+@media (max-width: 1024px) {
+    .about-banner {
+        height: 50vh;
+    }
+    
+    .banner-title {
+        font-size: 2.5rem;
+    }
+    
+    .album-showcase {
+        padding: 30px;
+    }
+    
+    .album-showcase-title {
+        font-size: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-banner {
+        height: 40vh;
+        margin-bottom: 40px;
+    }
+    
+    .banner-title {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+    
+    .banner-subtitle {
+        font-size: 1rem;
+    }
+    
+    .intro-content {
+        padding: 25px;
+    }
+    
+    .intro-text {
+        font-size: 1rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .stat-card {
+        padding: 20px;
+    }
+    
+    .stat-number {
+        font-size: 2.2rem;
+    }
+    
+    .album-showcase {
+        padding: 25px;
+        margin-bottom: 25px;
+    }
+    
+    .album-showcase-title {
+        font-size: 1.3rem;
+    }
+    
+    .album-showcase-description {
+        font-size: 0.95rem;
+    }
+    
+    .genres-section {
+        padding: 40px 20px;
+    }
+    
+    .genres-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .philosophy-section {
+        padding: 40px 20px;
+    }
+    
+    .philosophy-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .philosophy-icon {
+        font-size: 2.5rem;
+    }
+    
+    .philosophy-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .philosophy-card p {
+        font-size: 0.9rem;
+    }
+    
+    .influences-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .about-cta {
+        padding: 40px 20px;
+        margin: 60px 0;
+    }
+    
+    .about-cta h2 {
+        font-size: 1.6rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+    }
+    
+    .cta-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-banner {
+        height: 35vh;
+        margin-bottom: 30px;
+    }
+    
+    .banner-title {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .stat-card {
+        padding: 15px;
+    }
+    
+    .stat-number {
+        font-size: 1.8rem;
+    }
+    
+    .intro-content {
+        padding: 15px;
+    }
+    
+    .intro-text {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+    }
+    
+    .album-showcase {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .album-showcase-title {
+        font-size: 1.1rem;
+    }
+    
+    .album-showcase-description {
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+    }
+    
+    .album-showcase-tags {
+        gap: 6px;
+    }
+    
+    .tag {
+        padding: 4px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .grimoire-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .grimoire-item {
+        padding: 12px;
+    }
+    
+    .grimoire-item h4 {
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+    }
+    
+    .grimoire-item p {
+        font-size: 0.85rem;
+    }
+    
+    .genre-card {
+        padding: 20px;
+    }
+    
+    .genre-icon {
+        font-size: 2.5rem;
+    }
+    
+    .genre-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .genre-card p {
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+    }
+    
+    .philosophy-cards {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .philosophy-icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    
+    .philosophy-card h3 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+    
+    .philosophy-card p {
+        font-size: 0.85rem;
+    }
+    
+    .about-cta {
+        padding: 25px 15px;
+        margin: 40px 0;
+    }
+    
+    .about-cta h2 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+    
+    .about-cta p {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+    }
+    
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+}

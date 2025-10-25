@@ -1,0 +1,263 @@
+/**
+ * ФАЙЛ: assets/css/main.css
+ * ОСНОВНОЙ CSS - ПОЗВОЛЯЕТ ПЕРЕОПРЕДЕЛЕНИЕ ТЕМАМИ
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Roboto:wght@400;700&display=swap');
+
+/* --- ОБЩИЕ СТИЛИ --- */
+body {
+    background-color: #000;
+    font-family: 'Roboto', sans-serif;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-size: 16px;
+}
+
+/* --- АНИМАЦИЯ ФОНА --- */
+#particles-js, #background-video {
+    position: fixed; 
+    right: 0; 
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    top: 0; 
+    left: 0; 
+    z-index: -1;
+}
+
+#particles-js { 
+    z-index: 0; 
+}
+
+#background-video { 
+    opacity: 0.2; 
+    object-fit: cover; 
+}
+
+/* --- ОБЩАЯ СТРУКТУРА --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.page-content {
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 30px 40px;
+    border-radius: 8px;
+    margin-top: 40px;
+    position: relative;
+    z-index: 5;
+}
+
+h1, h2, h3 {
+    font-family: 'Cinzel Decorative', serif;
+}
+
+h1 { 
+    font-size: 2.5rem; 
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ff5500;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+p { 
+    line-height: 1.7; 
+}
+
+/* --- ШАПКА И МЕНЮ --- */
+.site-header {
+    background-color: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    border-bottom: 1px solid #444;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.5rem;
+    color: #fff;
+    text-decoration: none;
+}
+
+.main-nav ul { 
+    margin: 0; 
+    padding: 0; 
+    list-style: none; 
+    display: flex; 
+}
+
+.main-nav li { 
+    margin-left: 20px; 
+}
+
+.main-nav a {
+    color: #ccc;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.main-nav a:hover { 
+    color: #ff5500; 
+    text-shadow: 0 0 5px #ff5500; 
+}
+
+/* --- ПОДВАЛ --- */
+.site-footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #111;
+    border-top: 1px solid #333;
+    margin-top: 40px;
+}
+
+/* --- КНОПКИ --- */
+button, .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+button:hover, .btn:hover {
+    transform: translateY(-2px);
+}
+
+/* --- ИНПУТЫ --- */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    padding: 10px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #ff5500;
+}
+
+/* --- КАРТОЧКИ --- */
+.card,
+.genre-card,
+.album-card,
+.influence-card {
+    background-color: rgba(20, 20, 20, 0.9);
+    border: 1px solid #666;
+    border-radius: 8px;
+    padding: 20px;
+    transition: all 0.3s;
+}
+
+.card:hover,
+.genre-card:hover,
+.album-card:hover,
+.influence-card:hover {
+    transform: translateY(-5px);
+    border-color: #ff5500;
+}
+
+/* --- ТАБЛИЦЫ --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th {
+    background-color: #ff5500;
+    color: #000;
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #333;
+    color: #e0e0e0;
+}
+
+tr:hover {
+    background-color: rgba(255, 85, 0, 0.1);
+}
+
+/* --- ССЫЛКИ --- */
+a {
+    color: #ff5500;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* --- УТИЛИТЫ --- */
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* --- МОБИЛЬНАЯ АДАПТИВНОСТЬ --- */
+@media (max-width: 768px) {
+    .logo a {
+        font-size: 1.2rem;
+    }
+    
+    .main-nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .main-nav li {
+        margin-left: 0;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* ВАЖНО: ТЕМЫ БУДУТ ПЕРЕОПРЕДЕЛЯТЬ ЭНОЭТИ СТИЛИ */
+/* Используй CSS переменные в темах (--primary-color, etc) */

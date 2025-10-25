@@ -1,0 +1,397 @@
+/**
+ * MASTER OF ILLUSION - EPIC ALBUMS
+ * Красивые альбомы с правильными стилями
+ */
+
+:root {
+    --gold: #FFD700;
+    --gold-light: #FFE135;
+    --gold-dark: #DAA520;
+    --card-bg: rgba(15, 15, 25, 0.9);
+}
+
+/* ============================================
+   ЗАГОЛОВОК СТРАНИЦЫ АЛЬБОМОВ
+   ============================================ */
+
+.page-content h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 3rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(255,215,0,0.6);
+    margin-bottom: 50px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.page-content h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* ============================================
+   ГАЛЕРЕЯ АЛЬБОМОВ
+   ============================================ */
+
+.album-showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 45px;
+    margin: 60px 0;
+    perspective: 1000px;
+}
+
+.album-showcase-card {
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+    animation: cardEntrance 0.8s ease-out forwards;
+    animation-delay: var(--delay, 0s);
+    opacity: 0;
+}
+
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(40px) rotateX(10deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+    }
+}
+
+/* ============================================
+   АЛЬБОМ - ВИЗУАЛЬНЫЙ ДИЗАЙН
+   ============================================ */
+
+.album-showcase-inner {
+    position: relative;
+}
+
+.album-number {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 4rem;
+    color: rgba(255,215,0,0.15);
+    font-weight: bold;
+    z-index: 0;
+    text-shadow: 0 0 20px rgba(255,215,0,0.1);
+    line-height: 1;
+}
+
+/* Рамка альбома */
+.album-frame-wrapper {
+    position: relative;
+    aspect-ratio: 1;
+    margin-bottom: 25px;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.album-frame-outer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 5px solid var(--gold);
+    box-shadow: 
+        0 0 40px rgba(255,215,0,0.5),
+        inset 0 0 40px rgba(0,0,0,0.8),
+        0 25px 80px rgba(0,0,0,0.8);
+    background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, transparent 100%);
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.album-showcase-card:hover .album-frame-outer {
+    border-color: var(--gold-light);
+    box-shadow: 
+        0 0 60px rgba(255,215,0,0.8),
+        inset 0 0 60px rgba(255,215,0,0.2),
+        0 40px 100px rgba(255,215,0,0.4);
+    transform: scale(1.05) translateY(-10px);
+}
+
+/* Блеск на изображении */
+.album-frame-outer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.8s;
+    z-index: 5;
+}
+
+.album-showcase-card:hover .album-frame-outer::before {
+    opacity: 1;
+    animation: shine 0.7s ease;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) translateY(-100%);
+    }
+    100% {
+        transform: translateX(100%) translateY(100%);
+    }
+}
+
+/* Угловые декорации */
+.album-corner {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--gold);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 6;
+}
+
+.album-corner-tl {
+    top: -8px;
+    left: -8px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.album-corner-tr {
+    top: -8px;
+    right: -8px;
+    border-left: none;
+    border-bottom: none;
+}
+
+.album-corner-bl {
+    bottom: -8px;
+    left: -8px;
+    border-right: none;
+    border-top: none;
+}
+
+.album-corner-br {
+    bottom: -8px;
+    right: -8px;
+    border-left: none;
+    border-top: none;
+}
+
+.album-showcase-card:hover .album-corner {
+    opacity: 1;
+}
+
+/* Изображение альбома */
+.album-frame-inner {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.album-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: brightness(0.85) contrast(1.15) saturate(1.1);
+}
+
+.album-showcase-card:hover .album-image {
+    transform: scale(1.2) rotate(4deg);
+    filter: brightness(1) contrast(1.25) saturate(1.3) drop-shadow(0 0 30px rgba(255,215,0,0.6));
+}
+
+/* ============================================
+   ИНФОРМАЦИЯ ОБ АЛЬБОМЕ
+   ============================================ */
+
+.album-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 100px;
+    justify-content: space-between;
+}
+
+.album-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin: 0;
+    line-height: 1.3;
+    transition: all 0.3s;
+    text-shadow: 0 0 10px rgba(255,215,0,0.4);
+    word-wrap: break-word;
+}
+
+.album-showcase-card:hover .album-title {
+    color: var(--gold-light);
+    text-shadow: 0 0 20px rgba(255,215,0,0.8);
+    font-size: 1.5rem;
+}
+
+.album-year {
+    color: var(--gold-dark);
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+/* ============================================
+   ЭФФЕКТ НАВЕДЕНИЯ (OVERLAY)
+   ============================================ */
+
+.album-hover-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,215,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.4s;
+    pointer-events: none;
+    backdrop-filter: blur(2px);
+    z-index: 3;
+}
+
+.album-showcase-card:hover .album-hover-overlay {
+    opacity: 1;
+}
+
+.overlay-content {
+    text-align: center;
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.album-showcase-card:hover .overlay-content {
+    transform: translateY(0);
+}
+
+.overlay-arrow {
+    font-size: 1.8rem;
+    animation: arrow-bounce 0.6s ease-in-out infinite;
+}
+
+@keyframes arrow-bounce {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(8px); }
+}
+
+/* ============================================
+   ПУСТОЙ СПИСОК
+   ============================================ */
+
+.empty-state {
+    text-align: center;
+    color: #888;
+    font-size: 1.4rem;
+    padding: 80px 40px;
+    background: linear-gradient(135deg, rgba(255,215,0,0.05) 0%, transparent 100%);
+    border: 2px dashed var(--gold);
+    border-radius: 12px;
+    margin: 60px 0;
+}
+
+/* ============================================
+   АДАПТИВНОСТЬ
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .album-showcase-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 35px;
+    }
+    
+    .page-content h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .album-showcase-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 25px;
+    }
+    
+    .album-frame-outer {
+        border-width: 3px;
+    }
+    
+    .album-corner {
+        width: 35px;
+        height: 35px;
+        border-width: 2px;
+    }
+    
+    .album-title {
+        font-size: 1.1rem;
+    }
+    
+    .album-year {
+        font-size: 0.85rem;
+    }
+    
+    .page-content h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .album-showcase-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    
+    .album-number {
+        font-size: 2.5rem;
+        top: -30px;
+    }
+    
+    .album-frame-outer {
+        border-width: 2px;
+    }
+    
+    .album-corner {
+        width: 25px;
+        height: 25px;
+        border-width: 1px;
+    }
+    
+    .album-title {
+        font-size: 0.9rem;
+    }
+    
+    .album-year {
+        font-size: 0.75rem;
+    }
+    
+    .page-content h1 {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+}

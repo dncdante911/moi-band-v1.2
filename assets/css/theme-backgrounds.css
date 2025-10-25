@@ -1,0 +1,201 @@
+/* ========================================
+   ФАЙЛ: assets/css/theme-backgrounds.css
+   
+   КРАСИВЫЕ ФОНЫ ДЛЯ ВСЕХ ТЕМ
+   ✅ Градиенты, паттерны, текстуры
+   ✅ Плавные переходы
+   ✅ Не чисто чёрные
+   ======================================== */
+
+/* ============ POWER METAL ⚔️ ============ */
+
+body[data-theme="power-metal"] {
+    background-color: #0a0a0a;
+    background-image: 
+        /* Слой 1: Мелкая текстура */
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 215, 0, 0.03) 2px,
+            rgba(255, 215, 0, 0.03) 4px
+        ),
+        /* Слой 2: Радиальный градиент свечения */
+        radial-gradient(
+            ellipse at 20% 50%,
+            rgba(255, 165, 0, 0.15) 0%,
+            transparent 50%
+        ),
+        /* Слой 3: Радиальный градиент снизу */
+        radial-gradient(
+            ellipse at 80% 80%,
+            rgba(255, 215, 0, 0.1) 0%,
+            transparent 50%
+        ),
+        /* Слой 4: Основной фон */
+        linear-gradient(
+            135deg,
+            #0a0a0a 0%,
+            #1a1410 50%,
+            #0a0a0a 100%
+        );
+    background-attachment: fixed;
+    background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+}
+
+/* ============ GOTHIC METAL 🦇 ============ */
+
+body[data-theme="gothic-metal"] {
+    background-color: #0a0a0a;
+    background-image: 
+        /* Слой 1: Готические линии */
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            rgba(107, 44, 107, 0.05) 3px,
+            rgba(107, 44, 107, 0.05) 6px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 3px,
+            rgba(217, 70, 239, 0.03) 3px,
+            rgba(217, 70, 239, 0.03) 6px
+        ),
+        /* Слой 2: Фиолетовое свечение слева */
+        radial-gradient(
+            ellipse 800px 400px at 10% 50%,
+            rgba(217, 70, 239, 0.1) 0%,
+            rgba(107, 44, 107, 0.05) 30%,
+            transparent 70%
+        ),
+        /* Слой 3: Темное свечение справа */
+        radial-gradient(
+            ellipse 600px 300px at 90% 30%,
+            rgba(139, 0, 139, 0.08) 0%,
+            transparent 60%
+        ),
+        /* Слой 4: Основной фон */
+        linear-gradient(
+            125deg,
+            #0a0a0a 0%,
+            #15091a 40%,
+            #0a0a0a 100%
+        );
+    background-attachment: fixed;
+}
+
+/* ============ PUNK ROCK 🤘 ============ */
+
+body[data-theme="punk-rock"] {
+    background-color: #1a1a1a;
+    background-image: 
+        /* Слой 1: Неоновые пиксели */
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 255, 0, 0.04) 2px,
+            rgba(0, 255, 0, 0.04) 4px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 0, 255, 0.03) 2px,
+            rgba(255, 0, 255, 0.03) 4px
+        ),
+        /* Слой 2: Неоновый зеленый свет */
+        radial-gradient(
+            ellipse 900px 450px at 15% 60%,
+            rgba(0, 255, 0, 0.12) 0%,
+            rgba(0, 255, 0, 0.05) 30%,
+            transparent 70%
+        ),
+        /* Слой 3: Неоновый розовый свет */
+        radial-gradient(
+            ellipse 800px 400px at 85% 40%,
+            rgba(255, 0, 255, 0.1) 0%,
+            transparent 60%
+        ),
+        /* Слой 4: Киан свет */
+        radial-gradient(
+            ellipse 600px 300px at 50% 90%,
+            rgba(0, 255, 255, 0.08) 0%,
+            transparent 50%
+        ),
+        /* Слой 5: Основной фон */
+        linear-gradient(
+            110deg,
+            #1a1a1a 0%,
+            #0d0d1a 50%,
+            #1a1a1a 100%
+        );
+    background-attachment: fixed;
+}
+
+/* ============ LITERARY DARK 📚 ============ */
+
+body[data-theme="literary-dark"] {
+    background-color: #1a1714;
+    background-image: 
+        /* Слой 1: Бумажная текстура */
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 1px,
+            rgba(212, 165, 116, 0.02) 1px,
+            rgba(212, 165, 116, 0.02) 2px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 1px,
+            rgba(139, 115, 85, 0.02) 1px,
+            rgba(139, 115, 85, 0.02) 2px
+        ),
+        /* Слой 2: Золотистое свечение слева */
+        radial-gradient(
+            ellipse 700px 400px at 15% 40%,
+            rgba(212, 165, 116, 0.1) 0%,
+            rgba(139, 115, 85, 0.05) 30%,
+            transparent 70%
+        ),
+        /* Слой 3: Теплое свечение справа */
+        radial-gradient(
+            ellipse 600px 350px at 80% 60%,
+            rgba(212, 165, 116, 0.08) 0%,
+            transparent 60%
+        ),
+        /* Слой 4: Основной фон */
+        linear-gradient(
+            130deg,
+            #1a1714 0%,
+            #251f19 50%,
+            #1a1714 100%
+        );
+    background-attachment: fixed;
+}
+
+/* ============ ПЛАВНЫЙ ПЕРЕХОД МЕЖДУ ТЕМАМИ ============ */
+
+body {
+    transition: background-color 0.5s ease, background-image 0.5s ease;
+}
+
+/* ============ АДАПТИВ ДЛЯ МОБИЛЬНЫХ ============ */
+
+@media (max-width: 1024px) {
+    body {
+        /* На мобильных фоны могут быть полноэкранные */
+        background-attachment: scroll;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body {
+        background-attachment: scroll !important;
+        transition: none !important;
+    }
+}

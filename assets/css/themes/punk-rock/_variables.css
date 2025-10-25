@@ -1,0 +1,57 @@
+/**
+ * PUNK ROCK THEME - _variables.css
+ * Энергичный, бунтарский дизайн с неоновыми цветами
+ */
+
+:root {
+    /* ============ ЦВЕТА ============ */
+    --primary-color: #FF00FF;        /* Ярко-розовый - основной */
+    --secondary-color: #00FFFF;      /* Циан - дополнительный */
+    --accent-color: #FFFF00;         /* Желтый - акценты */
+    
+    --dark-bg: #0a0a0a;              /* Черный фон */
+    --dark-panel: #1a1a1a;           /* Темная панель */
+    --light-text: #ffffff;           /* Белый текст */
+    --border-color: #FF00FF;         /* Неоновая граница */
+    
+    /* ============ ШРИФТЫ ============ */
+    --heading-font: 'Cinzel Decorative', serif;
+    --body-font: 'Roboto', sans-serif;
+    
+    --heading-size-lg: 2.5rem;
+    --heading-size-md: 2rem;
+    --heading-size-sm: 1.5rem;
+    --body-size: 16px;
+    
+    /* ============ РАЗМЕРЫ ============ */
+    --max-width: 1200px;
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    
+    /* ============ ТЕНИ И ЭФФЕКТЫ ============ */
+    --shadow-color: 0 0 20px rgba(255, 0, 255, 0.4);
+    --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.9);
+    --glow-neon: 0 0 15px rgba(255, 0, 255, 0.8);
+    --glow-strong: 0 0 25px rgba(0, 255, 255, 0.9), 0 0 35px rgba(255, 0, 255, 0.7);
+    
+    /* ============ АНИМАЦИИ ============ */
+    --transition: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    --transition-fast: 0.15s ease;
+    
+    /* ============ РАССТОЯНИЯ ============ */
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+    --spacing-xl: 50px;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --heading-size-lg: 2rem;
+        --heading-size-md: 1.5rem;
+        --heading-size-sm: 1.2rem;
+        --body-size: 14px;
+    }
+}

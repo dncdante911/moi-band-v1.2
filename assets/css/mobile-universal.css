@@ -1,0 +1,1534 @@
+/**
+ * Файл: assets/css/mobile-universal.css
+ * УНИВЕРСАЛЬНЫЕ МОБИЛЬНЫЕ СТИЛИ
+ * ⚠️ НЕ ЛОМАЕТ DESKTOP ВЕРСИЮ!
+ */
+
+/* ============================================
+   TABLET: 768px - 1024px (iPad и планшеты)
+   ============================================ */
+
+@media (max-width: 1024px) {
+    /* Контейнеры - чуть меньше */
+    .container {
+        padding: 15px;
+        max-width: 100%;
+    }
+    
+    .page-content {
+        padding: 25px 15px;
+    }
+    
+    /* Заголовки - адаптивные */
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    h3 {
+        font-size: 1.3rem;
+    }
+    
+    /* Баннер - меньшая высота */
+    .hero-banner,
+    .about-banner,
+    .album-page-banner {
+        height: 50vh;
+        min-height: 400px;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    /* Грид элементов - 2 колонки */
+    .album-showcase-grid,
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    /* Плеер - убираем маргины */
+    .epic-player {
+        padding: 15px 10px;
+        margin: 20px 0;
+    }
+    
+    /* Чат */
+    .chat-container {
+        flex-direction: column;
+        height: auto;
+        min-height: 60vh;
+    }
+    
+    .chat-wrapper {
+        flex-direction: column;
+    }
+    
+    .chat-sidebar,
+    .chat-users {
+        width: 100%;
+        border: none;
+        padding: 10px;
+    }
+}
+
+/* ============================================
+   МОБИЛЬНЫЕ: 480px - 767px
+   Смартфоны в портрете и ландшафте
+   ============================================ */
+
+@media (max-width: 767px) {
+    /* === ОСНОВНЫЕ СТИЛИ === */
+    html {
+        font-size: 14px;
+    }
+    
+    body {
+        overflow-x: hidden;
+    }
+    
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* === КОНТЕЙНЕРЫ === */
+    .container {
+        padding: 10px;
+        margin: 0;
+    }
+    
+    .page-content {
+        padding: 15px 10px;
+        margin-top: 20px;
+        border-radius: 0;
+    }
+    
+    /* === ТИПОГРАФИЯ === */
+    h1 {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+        margin: 15px 0 10px;
+    }
+    
+    h2 {
+        font-size: 1.4rem;
+        margin: 15px 0 10px;
+    }
+    
+    h3 {
+        font-size: 1.1rem;
+        margin: 10px 0 8px;
+    }
+    
+    p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin: 8px 0;
+    }
+    
+    /* === БАННЕРЫ === */
+    .hero-banner,
+    .about-banner,
+    .album-page-banner {
+        height: 40vh;
+        min-height: 300px;
+        margin-bottom: 20px;
+        background-attachment: scroll;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+        word-spacing: normal;
+        letter-spacing: 0.5px;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .hero-description {
+        font-size: 0.9rem;
+        margin: 12px 0 20px;
+    }
+    
+    .hero-buttons {
+        gap: 8px;
+        flex-direction: column;
+    }
+    
+    .hero-button {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+    }
+    
+    /* === ГРИДЫ === */
+    .album-showcase-grid,
+    .news-grid,
+    .genres-grid,
+    .influences-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .stat-card {
+        padding: 15px;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    /* === АЛЬБОМЫ === */
+    .album-showcase-grid {
+        gap: 12px;
+    }
+    
+    .album-showcase-card {
+        animation: none;
+        opacity: 1;
+    }
+    
+    .album-frame-outer {
+        border-width: 2px;
+    }
+    
+    .album-corner {
+        width: 20px;
+        height: 20px;
+        border-width: 1px;
+    }
+    
+    .album-number {
+        font-size: 1.8rem;
+        top: -15px;
+    }
+    
+    .album-title {
+        font-size: 0.95rem;
+    }
+    
+    /* === НОВОСТИ === */
+    .news-card {
+        padding: 15px;
+    }
+    
+    .news-date {
+        font-size: 0.8rem;
+    }
+    
+    .news-title {
+        font-size: 1.1rem;
+        margin: 10px 0 8px;
+    }
+    
+    .news-excerpt {
+        font-size: 0.9rem;
+        margin: 8px 0;
+    }
+    
+    /* === ФОРМА === */
+    .form-group {
+        margin-bottom: 12px;
+    }
+    
+    .form-group label {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 10px 8px;
+        font-size: 16px;
+        border-radius: 3px;
+    }
+    
+    .btn-submit {
+        padding: 12px 25px;
+        font-size: 0.95rem;
+        width: 100%;
+    }
+    
+    /* === ТАБЛИЦЫ === */
+    .track-table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .track-table th,
+    .track-table td {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+    
+    /* === ПЛЕЕР === */
+    .epic-player {
+        padding: 10px 6px;
+        border-radius: 6px;
+        gap: 0;
+    }
+    
+    .player-display {
+        aspect-ratio: 16 / 12;
+        margin-bottom: 8px;
+        border-width: 1.5px;
+        min-height: 180px;
+    }
+    
+    #video-player {
+        max-height: 250px;
+    }
+    
+    .player-info {
+        text-align: center;
+        margin-bottom: 8px;
+    }
+    
+    .track-title {
+        font-size: 1rem;
+        margin-bottom: 3px;
+        line-height: 1.2;
+    }
+    
+    .track-artist,
+    .track-album {
+        font-size: 0.8rem;
+        margin: 0;
+    }
+    
+    .progress-container {
+        gap: 5px;
+        margin-bottom: 10px;
+    }
+    
+    .progress-bar {
+        height: 4px;
+        border-radius: 2px;
+    }
+    
+    .time {
+        font-size: 0.75rem;
+        min-width: 30px;
+        text-align: center;
+    }
+    
+    .player-controls {
+        gap: 6px;
+        margin-bottom: 8px;
+        padding: 0;
+    }
+    
+    .control-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+        border-width: 1.5px;
+        padding: 0;
+    }
+    
+    .play-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    
+    .player-modes {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+        margin: 8px 0;
+    }
+    
+    .mode-btn {
+        padding: 8px 10px;
+        font-size: 0.7rem;
+        border-width: 1px;
+    }
+    
+    .queue-container,
+    .lyrics-container {
+        max-height: 250px;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .queue-item {
+        padding: 6px;
+        gap: 6px;
+        font-size: 0.8rem;
+    }
+    
+    .queue-number {
+        min-width: 18px;
+        font-size: 0.75rem;
+    }
+    
+    .queue-duration {
+        font-size: 0.7rem;
+        min-width: 28px;
+    }
+    
+    /* === ЧАТ === */
+    .chat-container {
+        flex-direction: column;
+        gap: 0;
+        height: auto;
+        min-height: 50vh;
+    }
+    
+    .chat-wrapper {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .chat-sidebar {
+        width: 100%;
+        height: auto;
+        border: none;
+        border-bottom: 1px solid var(--gold);
+        padding: 8px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+    }
+    
+    .rooms-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+        flex-direction: row;
+    }
+    
+    .room-link {
+        padding: 8px;
+        font-size: 0.8rem;
+        flex: 1;
+    }
+    
+    .chat-main {
+        flex: 1;
+    }
+    
+    .chat-header {
+        padding: 10px;
+    }
+    
+    .chat-header h2 {
+        font-size: 1.1rem;
+        margin: 0;
+    }
+    
+    .room-description {
+        font-size: 0.8rem;
+        margin-top: 3px;
+    }
+    
+    .chat-messages {
+        padding: 10px;
+        gap: 10px;
+        max-height: 300px;
+    }
+    
+    .message {
+        gap: 8px;
+        font-size: 0.85rem;
+    }
+    
+    .message-avatar {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .username {
+        font-size: 0.85rem;
+    }
+    
+    .timestamp {
+        font-size: 0.7rem;
+    }
+    
+    .message-text {
+        font-size: 0.9rem;
+        margin: 0;
+    }
+    
+    .chat-input-area {
+        padding: 8px;
+    }
+    
+    .message-form {
+        flex-wrap: wrap;
+    }
+    
+    .message-input {
+        flex-basis: 100%;
+        order: 1;
+        padding: 8px;
+        font-size: 14px;
+        max-height: 80px;
+        min-height: 35px;
+    }
+    
+    .send-button {
+        flex-basis: 100%;
+        order: 2;
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+    
+    .chat-users {
+        width: 100%;
+        border: none;
+        border-top: 1px solid var(--gold);
+        max-height: 200px;
+        overflow-y: auto;
+    }
+    
+    .users-list {
+        gap: 5px;
+    }
+    
+    .user-item {
+        padding: 6px;
+        font-size: 0.8rem;
+    }
+    
+    /* === ССЫЛКИ И КНОПКИ === */
+    a {
+        touch-action: manipulation;
+    }
+    
+    .cta-button,
+    .footer-link {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+        width: 100%;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* ============================================
+   МАЛЕНЬКИЕ ЭКРАНЫ: до 480px
+   Старые смартфоны, iPhone SE
+   ============================================ */
+
+@media (max-width: 480px) {
+    html {
+        font-size: 13px;
+    }
+    
+    .container {
+        padding: 8px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.2rem;
+    }
+    
+    .hero-banner,
+    .about-banner,
+    .album-page-banner {
+        height: 35vh;
+        min-height: 250px;
+    }
+    
+    .hero-title {
+        font-size: 1.4rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .stat-card {
+        padding: 12px;
+    }
+    
+    .stat-number {
+        font-size: 1.6rem;
+    }
+    
+    .player-display {
+        aspect-ratio: 16 / 14;
+        min-height: 150px;
+    }
+    
+    .control-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+    }
+    
+    .play-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+    }
+    
+    .player-modes {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4px;
+    }
+    
+    .mode-btn {
+        padding: 6px 8px;
+        font-size: 0.65rem;
+        border-width: 1px;
+    }
+    
+    .queue-container,
+    .lyrics-container {
+        max-height: 200px;
+    }
+}
+
+/* ============================================
+   ГОРИЗОНТАЛЬНАЯ ОРИЕНТАЦИЯ
+   ============================================ */
+
+@media (max-width: 767px) and (orientation: landscape) {
+    .hero-banner,
+    .about-banner,
+    .album-page-banner {
+        height: 50vh;
+        min-height: 350px;
+    }
+    
+    .player-display {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+/* ============================================
+   УЛУЧШЕНИЯ ДЛЯ ДОСТУПНОСТИ
+   ============================================ */
+
+@media (max-width: 767px) {
+    /* Увеличенные зоны касания (44x44px Apple guideline) */
+    button,
+    a[role="button"],
+    input[type="button"],
+    input[type="submit"],
+    .control-btn,
+    .mode-btn {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    /* Видимый фокус для навигации клавиатурой */
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 2px;
+    }
+    
+    /* Хороший контраст для текста */
+    .message-text {
+        color: #e0e0e0;
+    }
+    
+    /* Поддержка safe-area для iPhone */
+    @supports (padding: max(0px)) {
+        body {
+            padding-left: max(10px, env(safe-area-inset-left));
+            padding-right: max(10px, env(safe-area-inset-right));
+            padding-bottom: max(10px, env(safe-area-inset-bottom));
+        }
+    }
+}
+
+/* ============================================
+   УВАЖЕНИЕ К ПРЕДПОЧТЕНИЯМ ПОЛЬЗОВАТЕЛЯ
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    /* Если пользователь предпочитает светлый режим */
+    body {
+        background-color: #f5f5f5;
+        color: #333;
+    }
+}
+
+/* ============================================
+   ПРОИЗВОДИТЕЛЬНОСТЬ
+   ============================================ */
+
+@media (max-width: 767px) {
+    /* Оптимизация для сенсорных устройств */
+    * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    
+    /* Исключение для input полей */
+    input,
+    textarea,
+    select {
+        -webkit-user-select: text;
+        user-select: text;
+    }
+    
+    /* Хардвер ускорение */
+    .epic-player,
+    .album-showcase-card,
+    .chat-messages {
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        will-change: transform;
+    }
+}
+
+
+/**
+ * МОБИЛЬНАЯ АДАПТИВНОСТЬ - Epic Player
+ * Добавить в конец assets/css/epic-player.css
+ * ОЧЕНЬ ОСТОРОЖНО! НЕ ТРОГАЕМ РАБОЧИЙ КОД!
+ */
+
+/* ============================================
+   ПЛАНШЕТЫ И БОЛЬШИЕ ЭКРАНЫ (1024px и выше)
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .epic-player {
+        padding: 20px 15px;
+    }
+    
+    .player-display {
+        aspect-ratio: 16 / 10;
+        margin-bottom: 15px;
+    }
+    
+    .player-info h2 {
+        font-size: 1.5rem;
+    }
+    
+    .player-controls {
+        gap: 15px;
+    }
+    
+    .control-btn {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .player-modes {
+        gap: 8px;
+    }
+    
+    .mode-btn {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+}
+
+/* ============================================
+   ПЛАНШЕТЫ (768px - 1023px)
+   ============================================ */
+
+@media (max-width: 768px) {
+    .epic-player {
+        padding: 15px 10px;
+        max-width: 100%;
+    }
+    
+    .player-display {
+        aspect-ratio: 16 / 11;
+        margin-bottom: 12px;
+        border-width: 2px;
+    }
+    
+    .player-info {
+        text-align: center;
+        margin-bottom: 12px;
+    }
+    
+    .player-info h2 {
+        font-size: 1.3rem;
+        margin-bottom: 5px;
+    }
+    
+    .player-info p {
+        font-size: 0.9rem;
+        margin: 2px 0;
+    }
+    
+    .progress-container {
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+    
+    .time {
+        font-size: 0.8rem;
+        min-width: 35px;
+    }
+    
+    .player-controls {
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+    
+    .control-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 1.2rem;
+    }
+    
+    .play-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .player-modes {
+        gap: 6px;
+        margin: 12px 0;
+    }
+    
+    .mode-btn {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+        border-width: 1.5px;
+    }
+    
+    .queue-container,
+    .lyrics-container {
+        max-height: 350px;
+        padding: 15px;
+    }
+}
+
+/* ============================================
+   МОБИЛЬНЫЕ УСТРОЙСТВА (480px - 767px)
+   Портретная и ландшафтная ориентация
+   ============================================ */
+
+@media (max-width: 767px) {
+    .epic-player {
+        padding: 12px 8px;
+        background: linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(20,20,35,0.95) 100%);
+        border-radius: 8px;
+    }
+    
+    /* ДИСПЛЕЙ */
+    .player-display {
+        aspect-ratio: 16 / 12;
+        margin-bottom: 10px;
+        border: 1.5px solid var(--gold);
+        box-shadow: 0 0 15px rgba(255,215,0,0.2);
+        border-radius: 6px;
+    }
+    
+    #video-player,
+    .player-cover {
+        border-radius: 6px;
+    }
+    
+    /* ИНФОРМАЦИЯ О ТРЕКЕ */
+    .player-info {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    
+    .track-title {
+        font-size: 1.1rem !important;
+        line-height: 1.2;
+        margin: 0 0 3px !important;
+        color: var(--gold);
+        text-shadow: 0 0 8px rgba(255,215,0,0.3);
+    }
+    
+    .track-artist,
+    .track-album {
+        font-size: 0.85rem;
+        margin: 0;
+        color: #aaa;
+    }
+    
+    /* ПРОГРЕСС БАР */
+    .progress-container {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 12px;
+    }
+    
+    .progress-bar {
+        flex: 1;
+        height: 5px;
+        border-radius: 2.5px;
+        background: rgba(255,215,0,0.1);
+        border: 1px solid rgba(255,215,0,0.3);
+        cursor: pointer;
+    }
+    
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--gold), #FFE135);
+        border-radius: 2.5px;
+        box-shadow: 0 0 8px rgba(255,215,0,0.5);
+    }
+    
+    .progress-handle {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .time {
+        font-size: 0.75rem;
+        min-width: 32px;
+        text-align: center;
+        color: #999;
+    }
+    
+    /* КНОПКИ УПРАВЛЕНИЯ */
+    .player-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+        padding: 0;
+    }
+    
+    .control-btn {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        border-radius: 50%;
+        font-size: 1rem;
+        border: 1.5px solid var(--gold);
+        background: rgba(255,215,0,0.05);
+        color: var(--gold);
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    
+    .control-btn:active {
+        transform: scale(0.95);
+        background: rgba(255,215,0,0.2);
+    }
+    
+    .play-btn {
+        width: 45px;
+        height: 45px;
+        min-width: 45px;
+        font-size: 1.3rem;
+        background: linear-gradient(135deg, var(--gold) 0%, #DAA520 100%);
+        color: #000;
+        border-color: var(--gold);
+        box-shadow: 0 0 12px rgba(255,215,0,0.4);
+    }
+    
+    .play-btn:active {
+        box-shadow: 0 0 20px rgba(255,215,0,0.6);
+    }
+    
+    /* РЕЖИМЫ */
+    .player-modes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+        margin: 10px 0;
+        width: 100%;
+    }
+    
+    .mode-btn {
+        padding: 8px 10px;
+        font-size: 0.7rem;
+        border: 1.5px solid var(--gold);
+        background: rgba(0,0,0,0.3);
+        color: var(--gold);
+        border-radius: 3px;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .mode-btn:active {
+        transform: scale(0.98);
+    }
+    
+    .mode-btn.active {
+        background: linear-gradient(135deg, var(--gold) 0%, #DAA520 100%);
+        color: #000;
+        box-shadow: 0 0 10px rgba(255,215,0,0.5);
+        border-color: #FFE135;
+    }
+    
+    /* ОЧЕРЕДЬ И ТЕКСТ */
+    .queue-container,
+    .lyrics-container {
+        background: rgba(0,0,0,0.4);
+        border: 1px solid rgba(255,215,0,0.2);
+        border-radius: 6px;
+        padding: 12px;
+        max-height: 300px;
+        overflow-y: auto;
+        margin-top: 10px;
+    }
+    
+    .queue-title {
+        color: var(--gold);
+        font-weight: bold;
+        margin-bottom: 10px;
+        font-size: 1rem;
+        text-shadow: 0 0 5px rgba(255,215,0,0.3);
+    }
+    
+    .queue-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .queue-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px;
+        border-bottom: 1px solid rgba(255,215,0,0.05);
+        cursor: pointer;
+        transition: all 0.2s;
+        color: #ccc;
+        font-size: 0.85rem;
+    }
+    
+    .queue-item:active {
+        background: rgba(255,215,0,0.1);
+        transform: translateX(2px);
+    }
+    
+    .queue-item.active {
+        background: rgba(255,215,0,0.15);
+        color: var(--gold);
+        font-weight: bold;
+        border-left: 3px solid var(--gold);
+        padding-left: 5px;
+    }
+    
+    .queue-number {
+        color: var(--gold);
+        font-weight: bold;
+        min-width: 20px;
+        text-align: center;
+        font-size: 0.8rem;
+    }
+    
+    .queue-info {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .queue-track-name {
+        font-weight: bold;
+        font-size: 0.8rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    .queue-track-album {
+        font-size: 0.7rem;
+        color: #888;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    .queue-duration {
+        color: #888;
+        font-size: 0.75rem;
+        min-width: 35px;
+        text-align: right;
+    }
+    
+    .lyrics-text {
+        color: #ddd;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-family: 'Courier New', monospace;
+        font-size: 0.8rem;
+    }
+    
+    .no-lyrics {
+        text-align: center;
+        color: #888;
+        padding: 30px 15px;
+        font-size: 0.9rem;
+    }
+    
+    /* Скролл-бар для мобилей */
+    .queue-container::-webkit-scrollbar,
+    .lyrics-container::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    .queue-container::-webkit-scrollbar-track,
+    .lyrics-container::-webkit-scrollbar-track {
+        background: rgba(255,215,0,0.05);
+    }
+    
+    .queue-container::-webkit-scrollbar-thumb,
+    .lyrics-container::-webkit-scrollbar-thumb {
+        background: rgba(255,215,0,0.3);
+        border-radius: 2px;
+    }
+}
+
+/* ============================================
+   МАЛЫЕ ЭКРАНЫ (до 480px)
+   Маленькие смартфоны в портретном режиме
+   ============================================ */
+
+@media (max-width: 480px) {
+    .epic-player {
+        padding: 10px 6px;
+    }
+    
+    .player-display {
+        aspect-ratio: 16 / 14;
+        margin-bottom: 8px;
+        border-width: 1.5px;
+    }
+    
+    .track-title {
+        font-size: 0.95rem !important;
+        margin-bottom: 2px !important;
+    }
+    
+    .track-artist,
+    .track-album {
+        font-size: 0.8rem;
+    }
+    
+    .progress-container {
+        gap: 4px;
+        margin-bottom: 10px;
+    }
+    
+    .time {
+        font-size: 0.7rem;
+        min-width: 28px;
+    }
+    
+    .player-controls {
+        gap: 6px;
+        margin-bottom: 8px;
+    }
+    
+    .control-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+    
+    .play-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    
+    .player-modes {
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+        margin: 8px 0;
+    }
+    
+    .mode-btn {
+        padding: 6px 8px;
+        font-size: 0.65rem;
+        border-width: 1px;
+    }
+    
+    .queue-container,
+    .lyrics-container {
+        padding: 10px;
+        max-height: 250px;
+    }
+    
+    .queue-item {
+        padding: 6px;
+        gap: 6px;
+        font-size: 0.8rem;
+    }
+    
+    .queue-number {
+        min-width: 18px;
+        font-size: 0.75rem;
+    }
+    
+    .queue-duration {
+        min-width: 30px;
+        font-size: 0.7rem;
+    }
+    
+    .lyrics-text {
+        font-size: 0.75rem;
+        line-height: 1.5;
+    }
+}
+
+/* ============================================
+   LANDSCAPE (ГОРИЗОНТАЛЬНАЯ ОРИЕНТАЦИЯ)
+   Смартфоны в горизонтальном режиме
+   ============================================ */
+
+@media (max-width: 767px) and (orientation: landscape) {
+    .epic-player {
+        padding: 8px 6px;
+    }
+    
+    .player-display {
+        aspect-ratio: 16 / 8;
+        margin-bottom: 8px;
+    }
+    
+    .player-info {
+        margin-bottom: 8px;
+    }
+    
+    .track-title {
+        font-size: 0.95rem !important;
+    }
+    
+    .track-artist,
+    .track-album {
+        font-size: 0.75rem;
+        margin: 0;
+    }
+    
+    .progress-container {
+        margin-bottom: 8px;
+    }
+    
+    .player-controls {
+        margin-bottom: 8px;
+    }
+    
+    .control-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 0.95rem;
+    }
+    
+    .play-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 1.2rem;
+    }
+    
+    .player-modes {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5px;
+        margin: 8px 0;
+    }
+    
+    .mode-btn {
+        padding: 5px 6px;
+        font-size: 0.65rem;
+    }
+}
+
+/* ============================================
+   ЭКСТРА МАЛЫЕ ЭКРАНЫ (до 360px)
+   Старые смартфоны
+   ============================================ */
+
+@media (max-width: 360px) {
+    .epic-player {
+        padding: 8px 4px;
+    }
+    
+    .player-display {
+        aspect-ratio: 16 / 15;
+    }
+    
+    .track-title {
+        font-size: 0.85rem !important;
+    }
+    
+    .track-artist,
+    .track-album {
+        font-size: 0.75rem;
+    }
+    
+    .control-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.85rem;
+    }
+    
+    .play-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+    }
+    
+    .queue-item {
+        padding: 5px;
+        font-size: 0.75rem;
+    }
+}
+
+/**
+ * ФИНАЛЬНЫЕ ШТРИХИ И УЛУЧШЕНИЯ
+ * Добавить в конец epic-player.css после мобильного кода
+ */
+
+/* ============================================
+   SMOOTH TRANSITIONS И ANIMATIONS
+   ============================================ */
+
+@media (max-width: 768px) {
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .control-btn,
+    .mode-btn,
+    .queue-item {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    
+    /* Плавные переходы на мобилях */
+    .epic-player {
+        transition: all 0.3s ease;
+    }
+    
+    .control-btn,
+    .mode-btn {
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Красивый фокус для сенсорных устройств */
+    .control-btn:focus-visible,
+    .mode-btn:focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 2px;
+    }
+}
+
+/* ============================================
+   ДИНАМИЧЕСКИЕ ЭФФЕКТЫ
+   ============================================ */
+
+@keyframes mobileGlow {
+    0%, 100% {
+        box-shadow: 0 0 8px rgba(255,215,0,0.3);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(255,215,0,0.5);
+    }
+}
+
+@media (max-width: 768px) {
+    .play-btn {
+        animation: mobileGlow 2s ease-in-out infinite;
+    }
+    
+    .mode-btn.active {
+        animation: mobileGlow 1.5s ease-in-out infinite;
+    }
+}
+
+/* ============================================
+   БЕЗОПАСНЫЕ ЗОНЫ ДЛЯ iPhone
+   ============================================ */
+
+@supports (padding: max(0px)) {
+    .epic-player {
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+    }
+}
+
+/* ============================================
+   УЛУЧШЕНИЯ ВИДИМОСТИ
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* Контрастность для прямого солнца */
+    @media (prefers-contrast: more) {
+        .player-display {
+            border-width: 2px;
+            box-shadow: 0 0 20px rgba(255,215,0,0.5);
+        }
+        
+        .mode-btn.active {
+            border-width: 2px;
+        }
+    }
+    
+    /* Уважение к предпочтениям движения */
+    @media (prefers-reduced-motion: reduce) {
+        .epic-player,
+        .control-btn,
+        .mode-btn {
+            animation: none !important;
+            transition: none !important;
+        }
+    }
+}
+
+/* ============================================
+   ОПТИМИЗАЦИЯ ДЛЯ ТЕМНОГО РЕЖИМА
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+    .epic-player {
+        background: linear-gradient(135deg, rgba(0,0,0,0.98) 0%, rgba(15,15,25,0.98) 100%);
+    }
+    
+    .queue-item:active {
+        background: rgba(255,215,0,0.15);
+    }
+}
+
+/* ============================================
+   ПЕЧАТЬ (если вдруг захотят распечатать)
+   ============================================ */
+
+@media print {
+    .epic-player {
+        border: 2px solid #000;
+        page-break-inside: avoid;
+    }
+    
+    .player-controls,
+    .mode-btn,
+    .control-btn {
+        display: none;
+    }
+}
+
+/* ============================================
+   УЛУЧШЕНИЯ ДЛЯ ACCESSIBILITY
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* Достаточные размеры для касания (44x44px как рекомендует Apple) */
+    .control-btn {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    /* Видимый фокус для навигации клавиатурой */
+    button:focus {
+        outline: 2px solid var(--gold);
+        outline-offset: 2px;
+    }
+    
+    /* Хороший контраст для текста */
+    .track-title {
+        color: var(--gold);
+    }
+    
+    .progress-fill {
+        opacity: 0.95;
+    }
+}
+
+/* ============================================
+   ОСОБЫЕ ЭФФЕКТЫ ДЛЯ HIGH-END УСТРОЙСТВ
+   ============================================ */
+
+@supports (backdrop-filter: blur(1px)) {
+    @media (max-width: 768px) {
+        .queue-container,
+        .lyrics-container {
+            backdrop-filter: blur(10px);
+            background: rgba(0,0,0,0.5);
+        }
+    }
+}
+
+/* ============================================
+   ОПТИМИЗАЦИЯ ПРОИЗВОДИТЕЛЬНОСТИ
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* Ленивая загрузка для очереди */
+    .queue-item {
+        will-change: background;
+    }
+    
+    /* Оптимизация переходов */
+    .progress-fill {
+        will-change: width;
+    }
+    
+    /* Хардвар ускорение */
+    .player-display,
+    #video-player {
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+    }
+}
+
+/* ============================================
+   ФИНАЛЬНЫЕ КОРРЕКТИРОВКИ
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* Убрать увеличение при двойном нажатии на iOS */
+    input,
+    button,
+    select {
+        font-size: 16px;
+    }
+    
+    /* Правильные отступы для виджетов */
+    .epic-player {
+        box-sizing: border-box;
+    }
+    
+    /* Плавный скролл */
+    html {
+        scroll-behavior: smooth;
+    }
+}

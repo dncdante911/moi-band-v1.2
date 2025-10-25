@@ -1,0 +1,165 @@
+/**
+ * PUNK ROCK - _typography.css
+ * Агрессивная, энергичная типография
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Roboto:wght@400;700;900&display=swap');
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--body-size);
+    line-height: 1.6;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: var(--spacing-md);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: var(--heading-size-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+h2 {
+    font-size: var(--heading-size-md);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--secondary-color);
+    display: inline-block;
+}
+
+h3 {
+    font-size: var(--heading-size-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+p {
+    margin-bottom: var(--spacing-md);
+    line-height: 1.7;
+    font-size: var(--body-size);
+}
+
+p strong {
+    font-weight: 900;
+    color: var(--accent-color);
+}
+
+p em {
+    font-style: italic;
+    color: var(--secondary-color);
+}
+
+ul, ol {
+    margin-left: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+li {
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.7;
+}
+
+@media (min-width: 1200px) {
+    body { font-size: 16px; }
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.5rem; }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    body { font-size: 15px; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.2rem; }
+}
+
+@media (max-width: 767px) {
+    body { font-size: 14px; }
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.3rem; }
+    h3 { font-size: 1.1rem; }
+}
+
+strong, .bold {
+    font-weight: 900;
+}
+
+em, .italic {
+    font-style: italic;
+}
+
+small {
+    font-size: 0.85em;
+    opacity: 0.9;
+}
+
+mark {
+    background-color: rgba(255, 0, 255, 0.2);
+    padding: 2px 4px;
+    border-radius: 3px;
+    color: var(--accent-color);
+}
+
+code {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+pre {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    overflow-x: auto;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-md);
+}
+
+a {
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    transition: all var(--transition);
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+    transition: width var(--transition-fast);
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+
+.text-muted {
+    opacity: 0.8;
+    color: #999;
+}
+
+.text-highlight {
+    color: var(--primary-color);
+    font-weight: 900;
+    text-shadow: var(--glow-neon);
+}

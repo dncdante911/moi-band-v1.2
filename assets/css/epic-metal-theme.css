@@ -1,0 +1,526 @@
+/**
+ * MASTER OF ILLUSION - EPIC METAL THEME
+ * Стили для Power Metal, Heavy Metal, Gothic Metal, Punk Rock
+ * БОЕВОЙ ДИЗАЙН С ЭФФЕКТАМИ
+ */
+
+:root {
+    /* Цветовая палитра */
+    --gold: #FFD700;
+    --gold-light: #FFE135;
+    --gold-dark: #DAA520;
+    --blood-red: #8B0000;
+    --crimson: #DC143C;
+    --dark-bg: #0a0a0f;
+    --darker-bg: #000000;
+    --card-bg: rgba(15, 15, 25, 0.95);
+    --purple: #6A0DAD;
+    --neon-purple: #9D00FF;
+    --cyan: #00FFFF;
+    --electric-blue: #0080FF;
+    
+    /* Тени и эффекты */
+    --glow-gold: 0 0 20px rgba(255,215,0,0.6), 0 0 40px rgba(255,215,0,0.3);
+    --glow-red: 0 0 20px rgba(139,0,0,0.6), 0 0 40px rgba(139,0,0,0.3);
+    --glow-purple: 0 0 20px rgba(157,0,255,0.6), 0 0 40px rgba(157,0,255,0.3);
+}
+
+/* ============================================
+   ГЛОБАЛЬНЫЕ СТИЛИ
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #0f0f1e 50%, var(--darker-bg) 100%);
+    color: #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Анимированный фон */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255,215,0,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(139,0,0,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(157,0,255,0.05) 0%, transparent 50%);
+    animation: bg-shift 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes bg-shift {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* ============================================
+   ШАПКА САЙТА
+   ============================================ */
+
+.site-header {
+    background: linear-gradient(135deg, rgba(10,10,15,0.95) 0%, rgba(20,15,35,0.95) 100%);
+    border-bottom: 3px solid var(--gold);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 0 30px rgba(255,215,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 900;
+    text-shadow: 
+        0 0 20px var(--gold),
+        0 0 40px rgba(255,215,0,0.5),
+        0 2px 10px rgba(0,0,0,0.8);
+    transition: all 0.3s;
+}
+
+.logo a:hover {
+    text-shadow: 
+        0 0 30px var(--gold),
+        0 0 60px rgba(255,215,0,0.8),
+        0 2px 10px rgba(0,0,0,0.8);
+    transform: scale(1.05);
+}
+
+/* Навигация */
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.main-nav a {
+    color: #ddd;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 18px;
+    border-radius: 0;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+    font-size: 0.95rem;
+    border: 2px solid transparent;
+}
+
+.main-nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,215,0,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.main-nav a:hover {
+    color: var(--gold);
+    border-bottom: 2px solid var(--gold);
+    text-shadow: 0 0 10px var(--gold);
+    transform: translateY(-2px);
+}
+
+.main-nav a:hover::before {
+    left: 100%;
+}
+
+/* ============================================
+   АЛЬБОМЫ GRID
+   ============================================ */
+
+.album-showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
+    margin: 60px 0;
+    perspective: 1000px;
+}
+
+.album-showcase-card {
+    position: relative;
+    text-decoration: none;
+    transform-style: preserve-3d;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: albumEntrance 0.8s ease-out forwards;
+    animation-delay: var(--delay, 0s);
+    opacity: 0;
+}
+
+@keyframes albumEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(50px) rotateX(10deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+    }
+}
+
+.album-showcase-card:hover {
+    transform: translateY(-20px) rotateX(5deg) scale(1.05);
+}
+
+/* ============================================
+   АЛЬБОМ КАРТОЧКА - ВИЗУАЛЬНЫЕ ЭФФЕКТЫ
+   ============================================ */
+
+.album-showcase-inner {
+    position: relative;
+}
+
+.album-frame-outer {
+    position: relative;
+    aspect-ratio: 1;
+    border: 4px solid var(--gold);
+    box-shadow: 
+        0 0 30px rgba(255,215,0,0.5),
+        inset 0 0 30px rgba(0,0,0,0.8),
+        0 20px 60px rgba(0,0,0,0.8);
+    background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, transparent 100%);
+    overflow: hidden;
+    transition: all 0.4s;
+}
+
+.album-showcase-card:hover .album-frame-outer {
+    border-color: var(--gold-light);
+    box-shadow: 
+        0 0 50px rgba(255,215,0,0.8),
+        inset 0 0 50px rgba(255,215,0,0.2),
+        0 30px 80px rgba(255,215,0,0.4);
+    transform: scale(1.02);
+}
+
+/* Эффект блеска на альбоме */
+.album-frame-outer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s, transform 0.6s;
+}
+
+.album-showcase-card:hover .album-frame-outer::before {
+    opacity: 1;
+    animation: shine 0.6s ease;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) translateY(-100%);
+    }
+    100% {
+        transform: translateX(100%) translateY(100%);
+    }
+}
+
+.album-frame-inner {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.album-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: brightness(0.9) contrast(1.1);
+}
+
+.album-showcase-card:hover .album-image {
+    transform: scale(1.15) rotate(3deg);
+    filter: brightness(1) contrast(1.2) drop-shadow(0 0 20px rgba(255,215,0,0.5));
+}
+
+/* Декоративные углы */
+.album-corner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--gold);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.album-corner-tl { top: -10px; left: -10px; border-right: none; border-bottom: none; }
+.album-corner-tr { top: -10px; right: -10px; border-left: none; border-bottom: none; }
+.album-corner-bl { bottom: -10px; left: -10px; border-right: none; border-top: none; }
+.album-corner-br { bottom: -10px; right: -10px; border-left: none; border-top: none; }
+
+.album-showcase-card:hover .album-corner {
+    opacity: 1;
+}
+
+/* Номер альбома */
+.album-number {
+    position: absolute;
+    top: -35px;
+    left: 0;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 3.5rem;
+    color: rgba(255,215,0,0.2);
+    font-weight: bold;
+    z-index: 0;
+    text-shadow: 0 0 20px rgba(255,215,0,0.2);
+}
+
+/* Информация об альбоме */
+.album-info {
+    margin-top: 20px;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.album-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin: 0;
+    line-height: 1.3;
+    transition: all 0.3s;
+    text-shadow: 0 0 10px rgba(255,215,0,0.5);
+}
+
+.album-showcase-card:hover .album-title {
+    color: var(--gold-light);
+    text-shadow: 0 0 20px rgba(255,215,0,0.8);
+    font-size: 1.3rem;
+}
+
+.album-year {
+    color: var(--gold-dark);
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 8px;
+}
+
+/* ============================================
+   ЗАГОЛОВКИ И ТЕКСТ
+   ============================================ */
+
+h1, h2, h3 {
+    font-family: 'Cinzel Decorative', serif;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(255,215,0,0.5);
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+    0%, 100% {
+        text-shadow: 0 0 15px rgba(255,215,0,0.5);
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(255,215,0,0.8);
+    }
+}
+
+h2 {
+    font-size: 2rem;
+    margin: 40px 0 20px;
+    border-bottom: 3px solid var(--gold);
+    padding-bottom: 10px;
+}
+
+/* ============================================
+   КНОПКИ
+   ============================================ */
+
+.cta-button, .hero-button {
+    display: inline-block;
+    padding: 16px 40px;
+    border: 2px solid var(--gold);
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255,215,0,0.5);
+    font-size: 1rem;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.3);
+    transition: left 0.5s;
+}
+
+.cta-button:hover, .hero-button:hover {
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+    box-shadow: 
+        0 0 40px rgba(255,215,0,0.8),
+        0 0 60px rgba(255,215,0,0.5),
+        inset 0 0 20px rgba(255,255,255,0.3);
+    transform: translateY(-3px) scale(1.05);
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.cta-button.secondary {
+    background: transparent;
+    color: var(--gold);
+}
+
+.cta-button.secondary:hover {
+    background: rgba(255,215,0,0.1);
+}
+
+/* ============================================
+   КОНТЕЙНЕР СОДЕРЖИМОГО
+   ============================================ */
+
+.page-content {
+    background: linear-gradient(135deg, rgba(15,15,25,0.9) 0%, rgba(20,20,35,0.9) 100%);
+    border-top: 2px solid var(--gold);
+    border-bottom: 2px solid var(--gold);
+    padding: 60px 40px;
+    margin: 40px 0;
+    box-shadow: 
+        0 20px 60px rgba(0,0,0,0.8),
+        inset 0 0 30px rgba(255,215,0,0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.page-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(90deg, transparent, rgba(255,215,0,0.05), transparent),
+        linear-gradient(180deg, rgba(255,215,0,0.02), transparent);
+    pointer-events: none;
+    animation: pageShine 6s ease-in-out infinite;
+}
+
+@keyframes pageShine {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}
+
+/* ============================================
+   ПОДВАЛ
+   ============================================ */
+
+.site-footer {
+    background: linear-gradient(135deg, rgba(10,10,15,0.95) 0%, rgba(20,15,35,0.95) 100%);
+    border-top: 3px solid var(--gold);
+    padding: 40px 20px;
+    text-align: center;
+    color: #aaa;
+    box-shadow: 0 -10px 30px rgba(255,215,0,0.2);
+}
+
+.site-footer a {
+    color: var(--gold);
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.site-footer a:hover {
+    color: var(--gold-light);
+    text-shadow: 0 0 10px var(--gold);
+}
+
+/* ============================================
+   АДАПТИВНОСТЬ
+   ============================================ */
+
+@media (max-width: 768px) {
+    .album-showcase-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 25px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .logo a {
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+    }
+    
+    .main-nav a {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .album-showcase-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    
+    .album-frame-outer {
+        border-width: 2px;
+    }
+    
+    .album-corner {
+        width: 25px;
+        height: 25px;
+    }
+}

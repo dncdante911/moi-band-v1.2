@@ -1,0 +1,61 @@
+/**
+ * ФАЙЛ: assets/css/themes/power-metal/_variables.css
+ * ПЕРЕМЕННЫЕ ТЕМЫ POWER METAL
+ * 
+ * Содержит все CSS переменные для темы
+ * Используется во всех других файлах темы
+ */
+
+:root {
+    /* ============ ЦВЕТА ============ */
+    --primary-color: #FFD700;        /* Золотой - основной цвет */
+    --secondary-color: #FFA500;      /* Оранжевый - дополнительный */
+    --accent-color: #FF6B1B;         /* Яркий оранжевый - акценты */
+    
+    --dark-bg: #0a0a0a;              /* Темный фон */
+    --dark-panel: #1a1410;           /* Темная панель */
+    --light-text: #e0e0e0;           /* Светлый текст */
+    --border-color: #FFD700;         /* Золотая граница */
+    
+    /* ============ ШРИФТЫ ============ */
+    --heading-font: 'Cinzel Decorative', serif;
+    --body-font: 'Roboto', sans-serif;
+    
+    --heading-size-lg: 2.5rem;
+    --heading-size-md: 2rem;
+    --heading-size-sm: 1.5rem;
+    --body-size: 16px;
+    
+    /* ============ РАЗМЕРЫ ============ */
+    --max-width: 1200px;
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    
+    /* ============ ТЕНИ ============ */
+    --shadow-color: 0 0 20px rgba(255, 215, 0, 0.3);
+    --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.7);
+    --glow-golden: 0 0 15px rgba(255, 215, 0, 0.6);
+    --glow-strong: 0 0 25px rgba(255, 165, 0, 0.8);
+    
+    /* ============ АНИМАЦИИ ============ */
+    --transition: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    --transition-fast: 0.15s ease;
+    
+    /* ============ РАССТОЯНИЯ ============ */
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+    --spacing-xl: 50px;
+}
+
+/* Адаптация переменных для мобильных */
+@media (max-width: 768px) {
+    :root {
+        --heading-size-lg: 2rem;
+        --heading-size-md: 1.5rem;
+        --heading-size-sm: 1.2rem;
+        --body-size: 14px;
+    }
+}

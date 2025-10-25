@@ -1,0 +1,119 @@
+/* Адаптивный дизайн */
+
+@media (max-width: 1024px) {
+    .chat-wrapper {
+        flex-direction: column;
+    }
+    
+    .chat-sidebar {
+        width: 100%;
+        height: auto;
+        display: flex;
+        gap: 10px;
+    }
+    
+    .rooms-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+    
+    .album-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+    
+    .admin-nav {
+        flex-wrap: wrap;
+    }
+    
+    .track-table {
+        font-size: 0.9rem;
+    }
+    
+    .chat-container {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .chat-wrapper {
+        flex-direction: column;
+    }
+    
+    .chat-users {
+        width: 100%;
+    }
+    
+    .main-nav {
+        display: none;
+    }
+    
+    .hamburger-menu {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-banner {
+        height: 50vh;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+    }
+    
+    .hero-button {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+    
+    .album-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .album-card img {
+        height: 250px;
+    }
+    
+    .track-table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .chat-sidebar {
+        flex-wrap: wrap;
+    }
+    
+    .rooms-list {
+        gap: 8px;
+    }
+    
+    .room-link {
+        flex: 1 1 45%;
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+    
+    .message-form {
+        flex-direction: column;
+    }
+    
+    .send-button {
+        width: 100%;
+    }
+    
+    .page-content {
+        padding: 15px 10px;
+    }
+}

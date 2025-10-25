@@ -1,0 +1,57 @@
+/**
+ * LITERARY DARK THEME - _variables.css
+ * Классический, литературный дизайн с коричневыми тонами
+ */
+
+:root {
+    /* ============ ЦВЕТА ============ */
+    --primary-color: #D4A574;        /* Золотисто-коричневый */
+    --secondary-color: #8B7355;      /* Коричневый - дополнительный */
+    --accent-color: #C7A868;         /* Теплый бежевый - акценты */
+    
+    --dark-bg: #1a1714;              /* Темно-коричневый фон */
+    --dark-panel: #251f19;           /* Еще темнее */
+    --light-text: #e8e4d8;           /* Теплый светлый текст */
+    --border-color: #D4A574;         /* Золотисто-коричневая граница */
+    
+    /* ============ ШРИФТЫ ============ */
+    --heading-font: 'Cinzel Decorative', serif;
+    --body-font: 'Roboto', sans-serif;
+    
+    --heading-size-lg: 2.5rem;
+    --heading-size-md: 2rem;
+    --heading-size-sm: 1.5rem;
+    --body-size: 16px;
+    
+    /* ============ РАЗМЕРЫ ============ */
+    --max-width: 1200px;
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    
+    /* ============ ТЕНИ И ЭФФЕКТЫ ============ */
+    --shadow-color: 0 0 20px rgba(212, 165, 116, 0.25);
+    --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.7);
+    --glow-warm: 0 0 15px rgba(212, 165, 116, 0.5);
+    --glow-strong: 0 0 25px rgba(212, 165, 116, 0.6);
+    
+    /* ============ АНИМАЦИИ ============ */
+    --transition: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    --transition-fast: 0.15s ease;
+    
+    /* ============ РАССТОЯНИЯ ============ */
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+    --spacing-xl: 50px;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --heading-size-lg: 2rem;
+        --heading-size-md: 1.5rem;
+        --heading-size-sm: 1.2rem;
+        --body-size: 14px;
+    }
+}
