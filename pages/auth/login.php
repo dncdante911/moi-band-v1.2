@@ -38,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if ($result['success']) {
             $success = true;
+            
             // Редирект на главную через 1 секунду
             header('Refresh: 1; url=/');
         } else {
