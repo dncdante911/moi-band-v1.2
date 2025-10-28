@@ -29,6 +29,7 @@ require_once __DIR__ . '/db_connect.php';  // ← ДОБАВЛЕНО: подкл
     <link rel="stylesheet" href="/assets/css/albums.css">
     <link rel="stylesheet" href="/assets/css/albums-epic.css">
     <link rel="stylesheet" href="/assets/css/epic-home.css">
+    <link rel="stylesheet" href="/assets/css/visualizer.css">
     
     <!-- === ШРИФТЫ === -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -97,7 +98,7 @@ require_once __DIR__ . '/db_connect.php';  // ← ДОБАВЛЕНО: подкл
         
         console.log('='.repeat(50));
     </script>
-    
+    <script src="/assets/js/visualizer.js"></script>
 </head>
 <body>
     <!-- === ФОНОВЫЕ ЭЛЕМЕНТЫ === -->
@@ -119,23 +120,23 @@ require_once __DIR__ . '/db_connect.php';  // ← ДОБАВЛЕНО: подкл
             <!-- Навигация -->
             <nav class="main-nav" id="mainNav" aria-label="Главная навигация">
                 <ul>
-                    <li><a href="/">🏠 Главная</a></li>
-                    <li><a href="/pages/albums.php">📀 Альбомы</a></li>
-                    <li><a href="/pages/about.php">ℹ️ О проекте</a></li>
-                    <li><a href="/pages/news.php">📰 Новости</a></li>
-                    <li><a href="/pages/gallery.php">🖼️ Галерея</a></li>
-                    <li><a href="/pages/contact.php">✉️ Контакты</a></li>
+                    <li><a href="/" class="nav-link" data-ajax-link>🏠 Главная</a></li>
+                    <li><a href="/pages/albums.php" class="nav-link" data-ajax-link>📀 Альбомы</a></li>
+                    <li><a href="/pages/about.php" class="nav-link" data-ajax-link>ℹ️ О проекте</a></li>
+                    <li><a href="/pages/news.php" class="nav-link" data-ajax-link>📰 Новости</a></li>
+                    <li><a href="/pages/gallery.php" class="nav-link" data-ajax-link>🖼️ Галерея</a></li>
+                    <li><a href="/pages/contact.php" class="nav-link" data-ajax-link>✉️ Контакты</a></li>
                     
                     <?php 
                     // Проверяем авторизацию
                     if (isset($_SESSION['user_id'])): 
                     ?>
-                        <li><a href="/pages/chat.php">💬 Чат</a></li>
-                        <li><a href="/pages/auth/profile.php">👤 Профиль</a></li>
-                        <li><a href="/pages/auth/logout.php">🚪 Выход</a></li>
+                        <li><a href="/pages/chat.php" class="nav-link" data-ajax-link>💬 Чат</a></li>
+                        <li><a href="/pages/auth/profile.php" class="nav-link" data-ajax-link>👤 Профиль</a></li>
+                        <li><a href="/pages/auth/logout.php" class="nav-link" data-ajax-link>🚪 Выход</a></li>
                     <?php else: ?>
-                        <li><a href="/pages/auth/login.php">🔐 Вход</a></li>
-                        <li><a href="/pages/auth/register.php">✍️ Регистрация</a></li>
+                        <li><a href="/pages/auth/login.php" class="nav-link" data-ajax-link>🔐 Вход</a></li>
+                        <li><a href="/pages/auth/register.php" class="nav-link" data-ajax-link>✍️ Регистрация</a></li>
                     <?php endif; ?>
                 </ul>
             </nav>

@@ -1,11 +1,7 @@
 /**
- * Файл: assets/js/epic-player.js
- * ПОЛНАЯ ВЕРСИЯ ПЛЕЕРА С РАБОТАЮЩИМ ВИДЕО
- * * ✅ Протестировано на Desktop и Mobile
- * ✅ Видео работает
- * ✅ Аудио работает
- * ✅ Плейлист работает
- * ✅ Текст работает
+ * Epic Player v4.4 - С ЭКВАЛАЙЗЕРОМ И КАЧЕСТВЕННЫМ ЗВУКОМ
+ * ✅ Web Audio API для качественного воспроизведения
+ * ✅ Эквалайзер с пресетами для металла
  */
 
 class EpicPlayer {
@@ -22,18 +18,215 @@ class EpicPlayer {
         this.currentMode = 'audio';
         this.repeatMode = 'none';
         this.isShuffle = false;
+        this.volume = 0.8;
+        this.isMuted = false;
+        this.previousVolume = this.volume;
         
-        console.log('🎸 Epic Player v4.2 - Video Edition');
+        // Web Audio API для качественного звука
+        this.audioContext = null;
+        this.audioSource = null;
+        this.gainNode = null;
+        this.analyser = null;
+        
+        // Эквалайзер
+        this.eqBands = [];
+        this.currentPreset = 'flat';
+        
+        console.log('🎸 Epic Player v4.4 - High Quality Audio Edition');
         this.init();
     }
     
     init() {
         this.setupEventListeners();
+        this.setupVolumeControl();
+        this.setupEqualizer();
         this.loadAlbumFromURL();
+        this.restoreVolume();
+        this.restoreEQPreset();
+        
+        // Инициализируем Audio Context после первого взаимодействия (для мобильных)
+        const initAudioOnInteraction = () => {
+            if (!this.audioContext) {
+                this.initAudioContext();
+            }
+            document.removeEventListener('touchstart', initAudioOnInteraction);
+            document.removeEventListener('click', initAudioOnInteraction);
+        };
+        
+        document.addEventListener('touchstart', initAudioOnInteraction, { once: true });
+        document.addEventListener('click', initAudioOnInteraction, { once: true });
+    }
+    
+    // === WEB AUDIO API ДЛЯ КАЧЕСТВЕННОГО ЗВУКА ===
+    initAudioContext() {
+        try {
+            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            
+            // Gain node для громкости
+            this.gainNode = this.audioContext.createGain();
+            this.gainNode.gain.value = this.volume;
+            
+            // Analyser для визуализации
+            this.analyser = this.audioContext.createAnalyser();
+            this.analyser.fftSize = 256;
+            
+            // Создаем эквалайзер (10 полос)
+            const frequencies = [32, 64, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
+            
+            frequencies.forEach(freq => {
+                const filter = this.audioContext.createBiquadFilter();
+                filter.type = 'peaking';
+                filter.frequency.value = freq;
+                filter.Q.value = 1;
+                filter.gain.value = 0;
+                this.eqBands.push(filter);
+            });
+            
+            // Соединяем цепочку
+            this.connectAudioChain();
+            
+            console.log('✅ Web Audio API initialized');
+        } catch (e) {
+            console.warn('⚠️ Web Audio API not supported, falling back to HTML5 Audio');
+        }
+    }
+    
+    connectAudioChain() {
+        if (!this.audioContext) {
+            console.warn('⚠️ Audio context not ready');
+            return;
+        }
+        
+        // Отключаем старые соединения
+        if (this.audioSource) {
+            try {
+                this.audioSource.disconnect();
+            } catch (e) {}
+        }
+        
+        const audio = this.container?.querySelector('audio');
+        if (!audio) return;
+        
+        try {
+            // Resume context если suspended (мобильные браузеры)
+            if (this.audioContext.state === 'suspended') {
+                this.audioContext.resume().then(() => {
+                    console.log('✅ Audio context resumed');
+                });
+            }
+            
+            // Создаем источник из audio элемента (только один раз)
+            if (!this.audioSource) {
+                this.audioSource = this.audioContext.createMediaElementSource(audio);
+            }
+            
+            // Соединяем: источник -> эквалайзер -> gain -> analyser -> выход
+            let currentNode = this.audioSource;
+            
+            this.eqBands.forEach(band => {
+                currentNode.connect(band);
+                currentNode = band;
+            });
+            
+            currentNode.connect(this.gainNode);
+            this.gainNode.connect(this.analyser);
+            this.analyser.connect(this.audioContext.destination);
+            
+            console.log('✅ Audio chain connected');
+        } catch (e) {
+            console.warn('⚠️ Could not connect audio chain:', e);
+            // Fallback - используем обычный HTML5 audio без Web Audio API
+        }
+    }
+    
+    // === ЭКВАЛАЙЗЕР ===
+    setupEqualizer() {
+        const eqButtons = this.container?.querySelectorAll('.eq-preset-btn');
+        if (eqButtons) {
+            eqButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const preset = btn.dataset.preset;
+                    this.applyEQPreset(preset);
+                });
+            });
+        }
+        
+        // Применяем дефолтный пресет
+        this.applyEQPreset(this.currentPreset);
+    }
+    
+    applyEQPreset(presetName) {
+        if (!this.audioContext) {
+            console.warn('⚠️ Web Audio API not available - EQ disabled');
+            this.showError('Эквалайзер недоступен на этом устройстве');
+            return;
+        }
+        
+        this.currentPreset = presetName;
+        
+        // Пресеты эквалайзера (значения в dB) - БОЛЕЕ КОНТРАСТНЫЕ
+        const presets = {
+            'flat': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            
+            // Power Metal - энергичный, мощный, яркий
+            'power-metal': [6, 4, 2, -2, -3, 0, 3, 5, 7, 5],
+            
+            // Heavy Metal - максимальная агрессия, глубокие басы
+            'heavy-metal': [8, 6, 4, 1, -3, -2, 3, 6, 7, 6],
+            
+            // Rock - классика, сбалансированный драйв
+            'rock': [5, 3, 1, 0, -2, 0, 2, 4, 5, 3],
+            
+            // Punk Rock - резкие средние, атака
+            'punk-rock': [6, 4, 3, 2, -1, 1, 4, 6, 5, 2],
+            
+            // Gothic - глубина, тьма, атмосфера
+            'gothic': [7, 5, 2, -3, -5, -3, 0, 2, 4, 6],
+            
+            // Symphonic - оркестровая широта
+            'symphonic': [4, 2, 0, -2, -3, 1, 3, 5, 6, 5]
+        };
+        
+        const gains = presets[presetName] || presets['flat'];
+        
+        this.eqBands.forEach((band, index) => {
+            band.gain.value = gains[index];
+        });
+        
+        // Обновляем кнопки
+        const buttons = this.container?.querySelectorAll('.eq-preset-btn');
+        if (buttons) {
+            buttons.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.preset === presetName);
+            });
+        }
+        
+        // Сохраняем пресет
+        this.saveEQPreset();
+        
+        console.log(`🎚️ EQ Preset: ${presetName}`, gains);
+    }
+    
+    saveEQPreset() {
+        try {
+            localStorage.setItem('epicPlayerEQPreset', this.currentPreset);
+        } catch (e) {
+            console.warn('⚠️ Could not save EQ preset');
+        }
+    }
+    
+    restoreEQPreset() {
+        try {
+            const saved = localStorage.getItem('epicPlayerEQPreset');
+            if (saved) {
+                this.applyEQPreset(saved);
+            }
+        } catch (e) {
+            console.warn('⚠️ Could not restore EQ preset');
+        }
     }
     
     setupEventListeners() {
-        // === ОСНОВНЫЕ КНОПКИ ===
         const playBtn = this.container?.querySelector('.play-btn');
         const prevBtn = this.container?.querySelector('[data-action="prev"]');
         const nextBtn = this.container?.querySelector('[data-action="next"]');
@@ -46,7 +239,6 @@ class EpicPlayer {
         if (repeatBtn) repeatBtn.addEventListener('click', () => this.toggleRepeat());
         if (shuffleBtn) shuffleBtn.addEventListener('click', () => this.toggleShuffle());
         
-        // === РЕЖИМЫ ===
         const modeButtons = this.container?.querySelectorAll('.mode-btn');
         if (modeButtons) {
             modeButtons.forEach(btn => {
@@ -57,19 +249,29 @@ class EpicPlayer {
             });
         }
         
-        // === ПРОГРЕСС БАР ===
         const progressBar = this.container?.querySelector('.progress-bar');
         if (progressBar) {
             progressBar.addEventListener('click', (e) => this.seekTo(e));
         }
         
-        // === АУДИО ===
         const audio = this.container?.querySelector('audio');
         if (audio) {
             audio.addEventListener('timeupdate', () => this.updateProgress());
             audio.addEventListener('ended', () => this.onTrackEnded());
             audio.addEventListener('loadedmetadata', () => this.updateDuration());
             audio.addEventListener('play', () => {
+                // Resume audio context если приостановлен (мобильные браузеры)
+                if (this.audioContext && this.audioContext.state === 'suspended') {
+                    this.audioContext.resume().then(() => {
+                        console.log('✅ Audio context resumed on play');
+                    });
+                }
+                
+                // Подключаем цепь если ещё не подключена
+                if (this.audioContext && !this.audioSource) {
+                    this.connectAudioChain();
+                }
+                
                 this.isPlaying = true;
                 this.updatePlayButton();
             });
@@ -77,9 +279,17 @@ class EpicPlayer {
                 this.isPlaying = false;
                 this.updatePlayButton();
             });
+            audio.addEventListener('error', (e) => this.handleMediaError(e, 'audio'));
+            audio.addEventListener('volumechange', () => this.updateVolumeDisplay());
+            
+            // Переподключаем Web Audio при загрузке нового трека
+            audio.addEventListener('loadstart', () => {
+                if (this.audioContext && !this.audioSource) {
+                    this.connectAudioChain();
+                }
+            });
         }
         
-        // === ВИДЕО ===
         const video = this.container?.querySelector('video');
         if (video) {
             video.addEventListener('timeupdate', () => this.updateProgress());
@@ -93,6 +303,151 @@ class EpicPlayer {
                 this.isPlaying = false;
                 this.updatePlayButton();
             });
+            video.addEventListener('error', (e) => this.handleMediaError(e, 'video'));
+        }
+    }
+    
+    setupVolumeControl() {
+        const volumeIcon = this.container?.querySelector('.volume-icon');
+        const volumeSlider = this.container?.querySelector('.volume-slider');
+        
+        if (volumeSlider) {
+            volumeSlider.value = this.volume * 100;
+            volumeSlider.addEventListener('input', (e) => {
+                const value = parseFloat(e.target.value) / 100;
+                this.setVolume(value);
+            });
+        }
+        
+        if (volumeIcon) {
+            volumeIcon.addEventListener('click', () => this.toggleMute());
+        }
+        
+        this.updateVolumeDisplay();
+    }
+    
+    setVolume(value) {
+        this.volume = Math.max(0, Math.min(1, value));
+        
+        const audio = this.container?.querySelector('audio');
+        const video = this.container?.querySelector('video');
+        
+        // Всегда устанавливаем громкость для HTML5 элементов
+        if (audio) audio.volume = this.volume;
+        if (video) video.volume = this.volume;
+        
+        // Web Audio API gain (если доступен)
+        if (this.gainNode) {
+            try {
+                this.gainNode.gain.value = this.volume;
+            } catch (e) {
+                console.warn('⚠️ Could not set gain value:', e);
+            }
+        }
+        
+        this.isMuted = this.volume === 0;
+        this.updateVolumeDisplay();
+        this.saveVolume();
+    }
+    
+    toggleMute() {
+        if (this.isMuted) {
+            this.setVolume(this.previousVolume || 0.8);
+            this.isMuted = false;
+        } else {
+            this.previousVolume = this.volume;
+            this.setVolume(0);
+            this.isMuted = true;
+        }
+    }
+    
+    updateVolumeDisplay() {
+        const volumeIcon = this.container?.querySelector('.volume-icon');
+        const volumeSlider = this.container?.querySelector('.volume-slider');
+        const volumePercentage = this.container?.querySelector('.volume-percentage');
+        
+        if (volumeIcon) {
+            if (this.volume === 0 || this.isMuted) {
+                volumeIcon.textContent = '🔇';
+            } else if (this.volume < 0.3) {
+                volumeIcon.textContent = '🔈';
+            } else if (this.volume < 0.7) {
+                volumeIcon.textContent = '🔉';
+            } else {
+                volumeIcon.textContent = '🔊';
+            }
+        }
+        
+        if (volumeSlider) {
+            volumeSlider.value = this.volume * 100;
+        }
+        
+        if (volumePercentage) {
+            volumePercentage.textContent = Math.round(this.volume * 100) + '%';
+        }
+    }
+    
+    saveVolume() {
+        try {
+            localStorage.setItem('epicPlayerVolume', this.volume.toString());
+        } catch (e) {
+            console.warn('⚠️ Could not save volume');
+        }
+    }
+    
+    restoreVolume() {
+        try {
+            const savedVolume = localStorage.getItem('epicPlayerVolume');
+            if (savedVolume !== null) {
+                this.setVolume(parseFloat(savedVolume));
+            } else {
+                this.setVolume(this.volume);
+            }
+        } catch (e) {
+            console.warn('⚠️ Could not restore volume');
+            this.setVolume(this.volume);
+        }
+    }
+    
+    handleMediaError(event, mediaType) {
+        const media = event.target;
+        let errorMessage = '';
+        
+        if (media.error) {
+            switch (media.error.code) {
+                case media.error.MEDIA_ERR_ABORTED:
+                    errorMessage = 'Загрузка прервана';
+                    break;
+                case media.error.MEDIA_ERR_NETWORK:
+                    errorMessage = 'Ошибка сети';
+                    break;
+                case media.error.MEDIA_ERR_DECODE:
+                    errorMessage = 'Ошибка декодирования';
+                    break;
+                case media.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+                    errorMessage = 'Формат не поддерживается';
+                    break;
+                default:
+                    errorMessage = 'Неизвестная ошибка';
+            }
+        }
+        
+        console.error(`❌ ${mediaType} error:`, errorMessage, media.src);
+        this.showError(`Ошибка загрузки ${mediaType === 'video' ? 'видео' : 'аудио'}: ${errorMessage}`);
+    }
+    
+    showError(message) {
+        const oldError = this.container?.querySelector('.player-error');
+        if (oldError) oldError.remove();
+        
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'player-error';
+        errorDiv.textContent = message;
+        
+        const infoSection = this.container?.querySelector('.player-info');
+        if (infoSection) {
+            infoSection.after(errorDiv);
+            setTimeout(() => errorDiv.remove(), 5000);
         }
     }
     
@@ -100,9 +455,8 @@ class EpicPlayer {
         const urlParams = new URLSearchParams(window.location.search);
         const albumId = urlParams.get('id');
         
-        // Добавленная проверка: если очередь уже есть, не загружаем ее снова при полной перезагрузке страницы
         if (this.queue.length > 0) {
-            console.log('🔄 Queue already loaded. Skipping auto-load.');
+            console.log('🔄 Queue already loaded');
             return;
         }
 
@@ -114,7 +468,6 @@ class EpicPlayer {
     
     async loadPlaylist(albumId) {
         try {
-            console.log('🔄 Fetching queue...');
             const url = `/api/player/queue.php?album_id=${albumId}`;
             const response = await fetch(url);
             
@@ -125,6 +478,7 @@ class EpicPlayer {
             if (!data.success) throw new Error(data.error || 'Unknown error');
             if (!data.tracks || data.tracks.length === 0) {
                 console.warn('⚠️ No tracks found');
+                this.showError('В этом альбоме нет треков');
                 return;
             }
             
@@ -137,6 +491,7 @@ class EpicPlayer {
             
         } catch (error) {
             console.error('❌ Error loading playlist:', error);
+            this.showError('Не удалось загрузить плейлист');
         }
     }
     
@@ -148,23 +503,16 @@ class EpicPlayer {
         
         console.log(`🎵 Loading track: ${track.title}`);
         
-        // Обновляем информацию
         this.updateTrackInfo(track);
         
-        // Загружаем аудио/видео в зависимости от режима
         if (this.currentMode === 'video' && track.videoPath) {
             this.loadVideo(track);
         } else {
             this.loadAudio(track);
         }
         
-        // Загружаем текст
         this.loadLyrics(track.id);
-        
-        // Обновляем очередь
         this.updateQueueHighlight();
-        
-        // ДОБАВЛЕНО: Обновляем подсветку на странице альбома (если она есть)
         this.updateAlbumTrackHighlight(track.id);
     }
     
@@ -174,13 +522,28 @@ class EpicPlayer {
         
         const path = this.normalizePath(track.fullAudioPath);
         console.log('🔊 Loading audio:', path);
+        
+        // Устанавливаем src и громкость
         audio.src = path;
+        audio.volume = this.volume;
+        
+        // Инициализируем Audio Context при первой загрузке
+        if (!this.audioContext) {
+            this.initAudioContext();
+        }
+        
+        // Переподключаем Web Audio при смене трека (если доступен)
+        if (this.audioContext && !this.audioSource) {
+            audio.addEventListener('loadedmetadata', () => {
+                this.connectAudioChain();
+            }, { once: true });
+        }
     }
     
     loadVideo(track) {
         const video = this.container?.querySelector('video');
         if (!video || !track.videoPath) {
-            console.warn('⚠️ No video or video element');
+            console.warn('⚠️ No video available');
             this.loadAudio(track);
             return;
         }
@@ -188,6 +551,7 @@ class EpicPlayer {
         const path = this.normalizePath(track.videoPath);
         console.log('🎬 Loading video:', path);
         video.src = path;
+        video.volume = this.volume;
     }
     
     async loadLyrics(trackId) {
@@ -217,10 +581,12 @@ class EpicPlayer {
         if (artist) artist.textContent = 'Master of Illusion';
         if (album) album.textContent = track.albumTitle || 'Album';
         
-        // Обновляем обложку
         const cover = this.container?.querySelector('.player-cover img');
         if (cover && track.coverImagePath) {
             cover.src = this.normalizePath(track.coverImagePath);
+            cover.onerror = () => {
+                cover.src = '/assets/images/placeholder.png';
+            };
         }
     }
     
@@ -228,7 +594,6 @@ class EpicPlayer {
         const queueList = this.container?.querySelector('.queue-list');
         if (!queueList) return;
         
-        // ДОБАВЛЕН data-track-id для упрощения поиска и подсветки
         queueList.innerHTML = this.queue.map((track, index) => `
             <li class="queue-item" data-index="${index}" data-track-id="${this.escapeHtml(track.id)}">
                 <span class="queue-number">${index + 1}</span>
@@ -254,13 +619,11 @@ class EpicPlayer {
         }
     }
 
-    // ДОБАВЛЕНО: Обновление подсветки трека на странице альбома
     updateAlbumTrackHighlight(currentTrackId) {
         const targetId = String(currentTrackId); 
         
         document.querySelectorAll('.track-playable').forEach(item => {
             const trackId = item.dataset.trackId;
-            // Сравниваем ID трека с ID, который сейчас воспроизводится
             item.classList.toggle('is-playing', trackId === targetId);
         });
     }
@@ -272,49 +635,43 @@ class EpicPlayer {
         if (this.isPlaying) {
             media.pause();
         } else {
-            media.play().catch(err => console.error('❌ Play error:', err));
+            media.play().catch(err => {
+                console.error('❌ Play error:', err);
+                this.showError('Не удалось воспроизвести медиа');
+            });
         }
     }
     
     playTrack(index) {
         this.loadTrack(index);
         const media = this.getCurrentMedia();
-        if (media) media.play().catch(err => console.error('❌ Play error:', err));
+        if (media) {
+            media.play().catch(err => {
+                console.error('❌ Play error:', err);
+                this.showError('Не удалось воспроизвести трек');
+            });
+        }
     }
 
-    // ДОБАВЛЕНО: Установка и запуск трека из внешнего источника (например, клик на странице альбома)
     setTrackAndPlay(newTrackData) {
-        // 1. Проверяем, находится ли трек уже в очереди
         const existingIndex = this.queue.findIndex(t => t.id == newTrackData.id);
 
         if (existingIndex !== -1) {
-            // Трек найден в очереди, просто запускаем его
-            console.log('🎵 Track found in queue, playing from index:', existingIndex);
             this.playTrack(existingIndex);
             return;
         }
 
-        // 2. Если трек не найден, мы предполагаем, что нужно загрузить весь плейлист
-        // этого альбома, если мы находимся на странице альбома.
         const urlParams = new URLSearchParams(window.location.search);
         const albumId = urlParams.get('id');
 
         if (albumId) {
-            // Загружаем плейлист, и сразу после загрузки пытаемся запустить нужный трек
-            console.log('🎵 Track not in queue. Re-loading playlist for album ID:', albumId);
             this.loadPlaylist(parseInt(albumId)).then(() => {
-                 // После загрузки, находим индекс кликнутого трека в новом плейлисте
                  const loadedIndex = this.queue.findIndex(t => t.id == newTrackData.id);
                  if(loadedIndex !== -1) {
                     this.playTrack(loadedIndex);
-                 } else {
-                     console.error('❌ Clicked track not found in loaded album playlist.');
                  }
-            }).catch(e => console.error('❌ Error during setTrackAndPlay loadPlaylist:', e));
+            });
         } else {
-            // 3. Если мы не на странице альбома, просто заменяем текущий трек.
-            console.log('🎵 Not on album page. Replacing current queue with single track.');
-            // Добавляем минимальные поля для соответствия формату track
             const trackForQueue = {
                 id: newTrackData.id,
                 fullAudioPath: newTrackData.fullAudioPath,
@@ -322,7 +679,7 @@ class EpicPlayer {
                 coverImagePath: newTrackData.coverImagePath,
                 albumTitle: newTrackData.albumTitle || 'Single',
             };
-            this.queue = [trackForQueue]; // Заменяем очередь
+            this.queue = [trackForQueue];
             this.renderQueue();
             this.playTrack(0);
         }
@@ -372,8 +729,6 @@ class EpicPlayer {
             btn.textContent = icons[this.repeatMode];
             btn.classList.toggle('active', this.repeatMode !== 'none');
         }
-        
-        console.log('🔄 Repeat:', this.repeatMode);
     }
     
     toggleShuffle() {
@@ -383,27 +738,24 @@ class EpicPlayer {
         if (btn) {
             btn.classList.toggle('active', this.isShuffle);
         }
-        
-        console.log('🔀 Shuffle:', this.isShuffle ? 'ON' : 'OFF');
     }
     
     switchMode(mode) {
-        console.log('📺 Switching to:', mode);
         this.currentMode = mode;
         
         const display = this.container?.querySelector('.player-display');
         const queue = this.container?.querySelector('.queue-container');
         const lyrics = this.container?.querySelector('.lyrics-container');
+        const equalizer = this.container?.querySelector('.equalizer-container');
         const video = this.container?.querySelector('video');
         const audio = this.container?.querySelector('audio');
         const cover = this.container?.querySelector('.player-cover');
         
-        // Скрыть все контейнеры
         if (display) display.style.display = 'none';
         if (queue) queue.style.display = 'none';
         if (lyrics) lyrics.style.display = 'none';
+        if (equalizer) equalizer.style.display = 'none';
         
-        // Обновить кнопки
         const buttons = this.container?.querySelectorAll('.mode-btn');
         if (buttons) {
             buttons.forEach(btn => {
@@ -431,7 +783,7 @@ class EpicPlayer {
                 if (track?.videoPath) {
                     this.loadVideo(track);
                 } else {
-                    alert('⚠️ Видео не доступно для этого трека');
+                    this.showError('Видео не доступно');
                     this.switchMode('audio');
                 }
                 break;
@@ -442,6 +794,10 @@ class EpicPlayer {
                 
             case 'lyrics':
                 if (lyrics) lyrics.style.display = 'block';
+                break;
+                
+            case 'equalizer':
+                if (equalizer) equalizer.style.display = 'block';
                 break;
         }
     }
@@ -477,10 +833,6 @@ class EpicPlayer {
         const duration = Math.floor(media.duration);
         if (this.queue[this.currentIndex]) {
             this.queue[this.currentIndex].duration = duration;
-            const item = this.container?.querySelector(
-                `.queue-item[data-index="${this.currentIndex}"] .queue-duration`
-            );
-            if (item) item.textContent = this.formatTime(duration);
         }
     }
     
@@ -492,7 +844,6 @@ class EpicPlayer {
     }
     
     onTrackEnded() {
-        console.log('⏹️ Track ended');
         this.nextTrack();
     }
     
@@ -505,8 +856,11 @@ class EpicPlayer {
     
     normalizePath(path) {
         if (!path) return '';
-        // Убираем ведущий слеш если есть
-        return path.startsWith('/') ? path : '/' + path;
+        let normalized = path.replace(/\/+/g, '/');
+        if (!normalized.startsWith('/')) {
+            normalized = '/' + normalized;
+        }
+        return normalized;
     }
     
     formatTime(seconds) {
@@ -522,20 +876,15 @@ class EpicPlayer {
     }
 }
 
-// === ИНИЦИАЛИЗАЦИЯ ===
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('epic-player')) {
         window.epicPlayer = new EpicPlayer('epic-player');
-        console.log('✅ Epic Player v4.2 Ready!');
+        console.log('✅ Epic Player v4.4 with Equalizer Ready!');
     }
     
-    // ДОБАВЛЕНО: Обработчик клика для элементов треклиста на странице альбома
     document.querySelectorAll('.track-playable').forEach(item => {
         item.addEventListener('click', (event) => {
-            // Исключаем клик, если нажали на ссылку внутри
-            if (event.target.closest('a')) {
-                return;
-            }
+            if (event.target.closest('a')) return;
             
             const trackId = item.dataset.trackId;
             const trackUrl = item.dataset.trackUrl;
@@ -543,7 +892,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const trackCover = item.dataset.trackCover;
             
             if (trackId && trackUrl && window.epicPlayer) {
-                // Создаем минимальный объект трека для передачи в плеер
                 const trackData = {
                     id: trackId,
                     fullAudioPath: trackUrl,
@@ -552,11 +900,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     albumTitle: 'Текущий альбом' 
                 };
                 
-                // Используем новую функцию плеера
                 window.epicPlayer.setTrackAndPlay(trackData);
             }
         });
     });
 });
-
-console.log('✅ Epic Player Video Script Loaded');
